@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - HHH vanila perfumes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      padding: 30px 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      text-align: center;
+    }
+    .logo {
+      width: 120px;
+      height: 90px;
+      background-image: url(images/HHH\ logo.png);
+      background-size: cover;
+      margin: 0 auto 10px;
+    }
+    h2 {
+      font-weight: 600;
+      color: #5b5e6d;
+      margin-bottom: 25px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+      font-size: 14px;
+    }
+    .options {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 15px;
+      color: #555;
+    }
+    .options a {
+      text-decoration: none;
+      color: #5b5e6d;
+    }
+    .options label {
+     display: flex;
+     align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #7a89a3;
+      color: #fff;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .or {
+      margin: 20px 0 10px;
+      font-size: 13px;
+      color: #777;
+    }
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .socials img {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+    .switch {
+      font-size: 13px;
+      color: #777;
+    }
+    .switch a {
+      color: #5b5e6d;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo"></div>
+    <h2>HHH vanila perfumes</h2>
+
+    <form>
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+
+      <div class="options">
+        <label><input type="checkbox"> Remember me ?</label>
+        <a href="#">Forgot password ?</a>
+      </div>
+
+      <button class="btn">Login</button>
+
+      <p class="or">Or Continue With</p>
+      <div class="socials">
+        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google">
+        <img src="https://img.icons8.com/color/48/000000/twitter.png" alt="Twitter">
+        <img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook">
+      </div>
+
+      <p class="switch">Need an account? <a href="signup.html">Sign Up</a></p>
+    </form>
+  </div>
+</body>
+</html>

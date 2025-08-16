@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cart - HHH Perfumes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .cart-img {
+            width: 80px;
+            height: auto;
+        }
+        .cart-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .remove-btn {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">HHH Perfumes</a>
+            <div>
+                <a href="/" class="btn btn-outline-secondary">Continue Shopping</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Content -->
+    <div class="container my-5">
+        <h2 class="mb-4">Your Shopping Cart</h2>
+        <div class="row">
+            <!-- Cart Items -->
+            <div class="col-lg-8">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example Cart Item -->
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="perfume.jpg" class="cart-img me-3" alt="Perfume">
+                                    <div>
+                                        <strong>Rose Essence Perfume</strong><br>
+                                        <small>50ml Eau De Parfum</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>₹1,200</td>
+                            <td>
+                                <input type="number" value="1" min="1" class="form-control" style="width:80px;">
+                            </td>
+                            <td>₹1,200</td>
+                            <td><span class="remove-btn">&times;</span></td>
+                        </tr>
+                        <!-- Repeat for more items -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="col-lg-4">
+                <div class="cart-summary">
+                    <h5>Cart Summary</h5>
+                    <div class="d-flex justify-content-between">
+                        <span>Subtotal</span>
+                        <strong>₹1,200</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Shipping</span>
+                        <strong>₹50</strong>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <span>Total</span>
+                        <strong>₹1,250</strong>
+                    </div>
+                    <a href="/checkout" class="btn btn-dark w-100 mt-3">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

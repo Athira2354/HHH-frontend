@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+<!-- Mirrored from demo.themefisher.com/elite-shop-bootstrap/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 May 2025 04:32:12 GMT -->
+
+<head>
+  <meta charset="utf-8">
+  <title>HHH sample UI</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/venobox/venobox.css">
+  <link rel="stylesheet" href="plugins/animate/animate.css">
+  <link rel="stylesheet" href="plugins/aos/aos.css">
+  <link rel="stylesheet" href="plugins/bootstrap-touchspin-master/jquery.bootstrap-touchspin.min.css">
+  <link rel="stylesheet" href="plugins/nice-select/nice-select.css">
+  <link rel="stylesheet" href="plugins/bootstrap-slider/bootstrap-slider.min.css">
+
+  <!-- Bootstrap CSS  -->
+  <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- Main Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+</head>
+<style>
+  .card_container {
+      display: flex;
+      gap: 60px;
+    }
+
+    .card {
+      position: relative;
+      width: 300px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 220px;
+      display: block;
+      margin: 0 auto;
+      position: relative;
+      z-index: 3;
+      transition: 0.4s ease;
+    }
+
+    .card-content {
+      background: #f7f7f7;
+      border-radius: 25px;
+      padding: 160px 10px 30px;
+      margin-top: -210px;
+      transition: 0.4s ease;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .bottle-shadow {
+      position: absolute;
+      top: 190px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 50%;
+      filter: blur(12px);
+      z-index: 2;
+      transition: all 0.4s ease;
+    }
+
+    .card h3 {
+      margin: 0 0 5px;
+      color: #333;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 8px;
+      transition: 0.3s;
+    }
+
+    .size-price {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .size-select {
+      padding: 3px 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 12px;
+      color: #333;
+      background: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+      transition: 0.3s;
+    }
+
+    .action-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .quantity {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      color: #333;
+      transition: 0.3s;
+      margin: 0;
+    }
+
+    .quantity button {
+      border: none;
+      background: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .add-to-cart {
+      background: #ffb400;
+      border: none;
+      padding: 8px 20px;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+      white-space: nowrap;
+    }
+
+    .add-to-cart:hover {
+      background: #ff9900;
+    }
+
+    .card:hover img {
+      transform: translateY(-12px);
+    }
+
+    .card:hover .bottle-shadow {
+      width: 140px;
+      height: 24px;
+      opacity: 0.3;
+      filter: blur(16px);
+    }
+
+    .card:hover .card-content {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      background: #4cc0e9;
+    }
+
+    .card:hover h3,
+    .card:hover .price,
+    .card:hover .quantity {
+      color: #fff;
+    }
+
+    .card:hover p {
+      color: #dff7ff;
+    }
+
+    .card:hover .size-select {
+      background: #fff;
+      color: #333;
+      border-color: #fff;
+    }
+</style>
+
+<body>
+
+  <!-- preloader start -->
+  <div class="preloader">
+    <img src="images/preloader.gif" alt="preloader">
+  </div>
+  <!-- preloader end -->
+
+
+  <!-- navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white w-100" id="navbar">
+    <a class="navbar-brand order-2 order-lg-1" href="index.html"><img class="img-fluid" src="images/HHH logo.png"
+        alt="logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse order-1 order-lg-2" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">home</a>
+        </li>
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link" href="shop.html">PRODUCT</a>
+          <div class="dropdown-menu mega-menu">
+            <div class="row">
+              <div class="col-md-4">
+                <img src="images/collection/product.1.png" alt="Home Fragrance" class="img-fluid mb-2">
+                <h6>Car Perfumes</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+              <div class="col-md-4">
+                <img src="images/categories/bottle.1.png" alt="Office Fragrance" class="img-fluid mb-2">
+                <h6>Body Perfumes</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+              <div class="col-md-4">
+                <img src="images/collection/product.2.png" alt="Car Accessories" class="img-fluid mb-2">
+                <h6>Multipurpose</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contactus.html">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="blog.html">Blog</a>
+        </li>
+      </ul>
+    </div>
+    <div class="order-3 navbar-right-elements d-flex align-items-center">
+      <div class="search-cart d-flex align-items-center">
+        <!-- search -->
+        <div class="search mr-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="#">
+              <input class="search-box" id="search" type="search" placeholder="Enter Keywords...">
+              <button class="search-icon" type="submit"><i class="ti-search"></i></button>
+            </form>
+          </div>
+        </div>
+
+        <!-- cart -->
+        <div class="cart mr-3">
+          <button id="cartOpen" class="cart-btn"><i class="ti-bag"></i><span class="d-xs-none">CART</span></button>
+          <div class="cart-wrapper">
+            <i id="cartClose" class="ti-close cart-close"></i>
+            <h4 class="mb-4">Your Cart</h4>
+            <ul class="pl-0 mb-3">
+              <li class="d-flex border-bottom">
+                <img src="images/categories/bottle.1.png" width="63" height="85" alt="product-img">
+                <div class="mx-3">
+                  <h6>HHH Extrem</h6>
+                  <span>1</span> X <span>$79.00</span>
+                </div>
+                <i class="ti-close"></i>
+              </li>
+              <li class="d-flex border-bottom">
+                <img src="images/categories/bottle.1.png" width="63" height="85" alt="product-img">
+                <div class="mx-3">
+                  <h6>White Oudh</h6>
+                  <span>1 X</span> <span>$79.00</span>
+                </div>
+                <i class="ti-close"></i>
+              </li>
+            </ul>
+            <div class="mb-3">
+              <span>Cart Total</span>
+              <span class="float-right">$178.00</span>
+            </div>
+            <div class="text-center">
+              <a href="#" class="btn btn-dark btn-mobile rounded-0">view cart</a>
+              <a href="#" class="btn btn-dark btn-mobile rounded-0">check out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- login/signup buttons -->
+      <div class="auth-buttons ml-3 d-flex" style="margin-right: 80px;">
+        <a href="login.html" class="btn btn-outline-dark btn-sm mr-2">Login</a>
+        <a href="signup.html" class="btn btn-dark btn-sm">Sign Up</a>
+      </div>
+    </div>
+
+  </nav>
+  <!-- /navigation -->
+
+  <!-- main wrapper -->
+  <div class="main-wrapper">
+
+    <section class="section bg-gray hero-area">
+      <div class="container">
+        <div class="hero-slider">
+
+          <!-- Start first slide  -->
+          <div class="slider-item">
+            <div class="row">
+              <div class="col-lg-6 align-self-center text-center text-md-left mb-4 mb-lg-0">
+                <h3 data-duration-in=".5" data-animation-in="fadeInLeft" data-delay-in="0"
+                  data-animation-out="fadeOutLeft" data-delay-out="5" data-duration-out=".3">Refresh Your Ride,</h3>
+                <!-- Start Title -->
+                <h1 data-duration-in=".5" data-animation-in="fadeInLeft" data-delay-in=".2"
+                  data-animation-out="fadeOutLeft" data-delay-out="5" data-duration-out=".3"> Elevate Your Drive!</h1>
+                <!-- end title -->
+                <!-- Start Subtitle -->
+                <h4 class="mb-4" data-duration-in=".5" data-animation-in="fadeInLeft" data-delay-in=".4"
+                  data-animation-out="fadeOutLeft" data-delay-out="5" data-duration-out=".3">Transform every journey
+                  into a delightful experience with our premium car perfumes!</h4>
+                <!-- end subtitle -->
+                <!-- Start description -->
+                <p class="mb-4" data-duration-in=".5" data-animation-in="fadeInLeft" data-delay-in=".6"
+                  data-animation-out="fadeOutLeft" data-delay-out="5" data-duration-out=".3"> Say goodbye to unwanted
+                  odors and hello to a captivating fragrance that lasts.</p>
+                <!-- end description -->
+                <!-- Start button -->
+                <a href="shop.html" class="btn btn-primary" data-duration-in=".5" data-animation-in="fadeInLeft"
+                  data-delay-in=".8" data-animation-out="fadeOutLeft" data-delay-out="5" data-duration-out=".3">shop
+                  now</a>
+                <!-- end button -->
+              </div>
+              <!-- Start slide image -->
+              <div class="col-lg-6 text-center text-md-left">
+                <!-- background letter -->
+                <div class="bg-letter">
+                  <span data-duration-in=".5" data-animation-in="fadeInRight" data-delay-in="1.2"
+                    data-animation-out="fadeOutRight" data-delay-out="5" data-duration-out=".3">
+                    <img src="/images/backgrounds/hhh bg.png" alt="HHH Logo" style=" height: 500px; ">
+                  </span>
+                  <!-- Slide image -->
+                  <img class="img-fluid d-unset" src="images/hero-area/hhh.png" alt="converse" data-duration-in=".5"
+                    data-animation-in="fadeInRight" data-delay-in="1" data-animation-out="fadeOutRight"
+                    data-delay-out="5" data-duration-out=".3">
+                </div>
+              </div>
+              <!-- end slide image  -->
+            </div>
+          </div> <!-- end slider item -->
+
+
+          <!-- Start slide  -->
+          <div class="slider-item">
+            <div class="row">
+              <div class="col-lg-6 align-self-center text-center text-md-left mb-4 mb-lg-0">
+                <h3 data-duration-in=".5" data-animation-in="fadeInDown" data-delay-in="0"
+                  data-animation-out="fadeOutDown" data-delay-out="5.8" data-duration-out=".3">we presents</h3>
+                <h1 data-duration-in=".5" data-animation-in="fadeInDown" data-delay-in=".2"
+                  data-animation-out="fadeOutDown" data-delay-out="5.4" data-duration-out=".3">High Quality fragnances
+                </h1>
+                <h3 class="mb-4" data-duration-in=".5" data-animation-in="fadeInDown" data-delay-in=".4"
+                  data-animation-out="fadeOutDown" data-delay-out="5" data-duration-out=".3">starts from $37.00</h3>
+                <p class="mb-4" data-duration-in=".5" data-animation-in="fadeInDown" data-delay-in=".6"
+                  data-animation-out="fadeOutDown" data-delay-out="4.6" data-duration-out=".3">Your search is over with
+                  HHH Car n Perfumes.</p>
+                <a href="shop.html" class="btn btn-primary" data-duration-in=".5" data-animation-in="fadeInDown"
+                  data-delay-in=".8" data-animation-out="fadeOutDown" data-delay-out="4.2" data-duration-out=".3">shop
+                  now</a>
+              </div>
+              <div class="col-lg-6 text-center">
+                <div class="bg-letter">
+                  <!-- background letter -->
+                  <span data-duration-in=".5" data-animation-in="fadeInRight" data-delay-in="1.2"
+                    data-animation-out="fadeOutRight" data-delay-out="5" data-duration-out=".3">
+                    <img src="/images/backgrounds/hhh bg.png" alt="HHH Logo" style=" height: 500px; ">
+                  </span>
+
+                  <img class="img-fluid d-unset" src="images/hero-area/hhh.png" alt="converse" data-duration-in=".5"
+                    data-animation-in="fadeInRight" data-delay-in="1" data-animation-out="fadeOutRight"
+                    data-delay-out="5" data-duration-out=".3">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end slide  -->
+
+        </div>
+      </div>
+    </section>
+    <!-- /hero area -->
+
+    <!-- categories -->
+    <section class="section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-title">Top Categories</h2>
+          </div>
+          <!-- categories item -->
+          <div class="col-lg-4 col-md-6 mb-50">
+            <div class="card p-0">
+              <div class="border-bottom text-center hover-zoom-img">
+                <a href="shop.html">
+                  <img src="images/categories/perfume bottle icon.jpeg" class="rounded-top img-fluid w-100"
+                    alt="product-img">
+                </a>
+              </div>
+
+              <!-- Removed <ul> with 3 images -->
+
+              <div class="px-4 py-3 border-top">
+                <h4 class="d-inline-block mb-0 mt-1">Car perfumes</h4>
+                <a href="shop.html" class="btn btn-sm btn-outline-primary float-right">view more</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- categories item -->
+          <div class="col-lg-4 col-md-6 mb-50">
+            <div class="card p-0">
+              <div class="border-bottom text-center hover-zoom-img">
+                <a href="shop.html">
+                  <img src="images/categories/perfume bottle icon3.jpg" class="rounded-top img-fluid w-100"
+                    alt="product-img">
+                </a>
+              </div>
+
+              <!-- Removed <ul> with 3 images -->
+
+              <div class="px-4 py-3 border-top">
+                <h4 class="d-inline-block mb-0 mt-1">Body perfumes</h4>
+                <a href="shop.html" class="btn btn-sm btn-outline-primary float-right">view more</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- categories item -->
+          <div class="col-lg-4 col-md-6 mb-50">
+            <div class="card p-0">
+              <div class="border-bottom text-center hover-zoom-img">
+                <a href="shop.html">
+                  <img src="images/categories/perfume bottle icon2.jpeg" class="rounded-top img-fluid w-100"
+                    alt="product-img">
+                </a>
+              </div>
+
+              <!-- Removed <ul> with 3 images -->
+
+              <div class="px-4 py-3 border-top">
+                <h4 class="d-inline-block mb-0 mt-1">Multipurpose</h4>
+                <a href="shop.html" class="btn btn-sm btn-outline-primary float-right">view more</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- /categories -->
+
+    <section class="section overlay cta" data-background="images/backgrounds/cta.png">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h1 class="text-white mb-2">End of Season Sale</h1>
+            <p class="text-white mb-4">Take 10% off on selected fragrances. Discount applied at checkout.</p>
+            <a href="shop.html" class="btn btn-light">shop now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <div id="quickView" class="quickview">
+  <div class="row w-100">
+    <div class="col-lg-6 col-md-6 mb-5 mb-md-0 pl-5 pt-4 pt-lg-0 pl-lg-0">
+      <img src="images/feature/product.png" alt="product-img" class="img-fluid">
+    </div>
+    <div class="col-lg-5 col-md-6 text-center text-md-left align-self-center pl-5">
+      <h3 class="mb-lg-2 mb-2">Woven Crop Cami</h3>
+      <span class="mb-lg-4 mb-3 h5">$90.00</span>
+      <p class="mb-lg-4 mb-3 text-gray">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. sed ut perspic atis unde omnis iste natus</p>
+      <form action="#">
+        <select class="form-control w-100 mb-2" name="color">
+          <option value="brown">Brown Color</option>
+          <option value="gray">Gray Color</option>
+          <option value="black">Black Color</option>
+        </select>
+        <select class="form-control w-100 mb-3" name="size">
+          <option value="small">Small Size</option>
+          <option value="medium">Medium Size</option>
+          <option value="large">Large Size</option>
+        </select>
+        <button class="btn btn-primary w-100 mb-lg-4 mb-3">add to cart</button>
+      </form>
+      <ul class="list-inline social-icon-alt">
+        <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="ti-vimeo-alt"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="ti-google"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div> -->
+    <!-- collection -->
+    <section class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-title">Top Collections</h2>
+          </div>
+          <div class="card_container">
+    <!-- Card Template -->
+    <div class="card" data-price-50="250" data-price-100="500">
+      <img src="images/categories/bottle.1.png" alt="Perfume_1">
+      <div class="bottle-shadow"></div>
+      <div class="card-content">
+        <h3>HHH Perfume_1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        <div class="size-price">
+          <select class="size-select">
+            <option value="50">50 ml</option>
+            <option value="100">100 ml</option>
+          </select>
+          <div class="price">₹ 250</div>
+        </div>
+        <div class="action-row">
+          <div class="quantity">
+            <button class="decrease">-</button>
+            <span class="qty">1</span>
+            <button class="increase">+</button>
+          </div>
+          <button class="add-to-cart">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-price-50="250" data-price-100="500">
+      <img src="images/categories/bottle.1.png" alt="Perfume_2">
+      <div class="bottle-shadow"></div>
+      <div class="card-content">
+        <h3>HHH Perfume_2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        <div class="size-price">
+          <select class="size-select">
+            <option value="50">50 ml</option>
+            <option value="100">100 ml</option>
+          </select>
+          <div class="price">₹ 250</div>
+        </div>
+        <div class="action-row">
+          <div class="quantity">
+            <button class="decrease">-</button>
+            <span class="qty">1</span>
+            <button class="increase">+</button>
+          </div>
+          <button class="add-to-cart">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-price-50="250" data-price-100="500">
+      <img src="images/categories/bottle.1.png" alt="Perfume_3">
+      <div class="bottle-shadow"></div>
+      <div class="card-content">
+        <h3>HHH Perfume_3</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        <div class="size-price">
+          <select class="size-select">
+            <option value="50">50 ml</option>
+            <option value="100">100 ml</option>
+          </select>
+          <div class="price">₹ 250</div>
+        </div>
+        <div class="action-row">
+          <div class="quantity">
+            <button class="decrease">-</button>
+            <span class="qty">1</span>
+            <button class="increase">+</button>
+          </div>
+          <button class="add-to-cart">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>
+      </div>
+    </section>
+    <!-- /deal -->
+
+
+    <!-- instagram -->
+    <!-- <section class="section">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2 class="mb-2">Follow Us On Instagram</h2>
+            <p class="mb-5">@hhh.perfumes</p>
+          </div>
+        </div> -->
+
+    <!-- Embed iframe from LightWidget -->
+    <!-- <div class="row justify-content-center">
+          <div class="col-12">
+            <iframe src="//lightwidget.com/widgets/c623431ea80d54cbba9e158f7b6e464b.html" scrolling="no"
+              allowtransparency="true" class="lightwidget-widget w-100" style="border:0;overflow:hidden;"></iframe>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- /instagram -->
+
+    <!-- service -->
+    <!-- <section class="section-sm border-top">
+      <div class="container">
+        <div class="row"> -->
+    <!-- service item -->
+    <!-- <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+            <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start">
+              <i class="ti-truck icon-lg mr-4 mb-3 mb-sm-0"></i>
+              <div class="text-center text-sm-left">
+                <h4>Free Shipping</h4>
+                <p class="mb-0 text-gray">Free shipping on order over 2000</p>
+              </div>
+            </div>
+          </div> -->
+    <!-- service item -->
+    <!-- <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+            <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start">
+              <i class="ti-shield icon-lg mr-4 mb-3 mb-sm-0"></i>
+              <div class="text-center text-sm-left">
+                <h4>Secure Payment</h4>
+                <p class="mb-0 text-gray">We ensure secure payment with Razorpay</p>
+              </div>
+            </div>
+          </div> -->
+    <!-- service item -->
+    <!-- <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+            <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start">
+              <i class="ti-timer icon-lg mr-4 mb-3 mb-sm-0"></i>
+              <div class="text-center text-sm-left">
+                <h4>Support 24/7</h4>
+                <p class="mb-0 text-gray">Contact us 24 hours a day, 7 days a week</p>
+              </div>
+            </div>
+          </div> -->
+    <!-- service item -->
+    <!-- <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+            <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start">
+              <i class="ti-reload icon-lg mr-4 mb-3 mb-sm-0"></i>
+              <div class="text-center text-sm-left">
+                <h4>30 Days Return</h4>
+                <p class="mb-0 text-gray">Simply return it within 30 days for an exchange.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!-- /service -->
+
+    <!-- newsletter -->
+    <!-- <section class="section bg-gray">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-title">Our Newsletter</h2>
+            <p class="mb-4">Subscribe to our Newsletter to receive early discount offers</p>
+          </div>
+          <div class="col-lg-6 col-md-8 col-sm-9 col-10 mx-auto">
+            <form action="#" class="d-flex flex-column flex-sm-row">
+              <input type="email" class="form-control rounded-0 border-0 mr-3 mb-4 mb-sm-0" id="mail"
+                placeholder="Enter your email">
+              <button type="submit" value="send" class="btn btn-primary">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!-- /newsletter -->
+
+    <!-- Newsletter Modal -->
+    <!-- <div class="modal fade subscription-modal" id="subscriptionModal" tabindex="-1">-->
+    <!--  <div class="modal-dialog modal-lg">-->
+    <!-- modal content start -->
+    <!--    <div class="modal-content">-->
+    <!-- container start -->
+    <!--      <div class="container-fluid">-->
+    <!--        <div class="row">-->
+    <!-- close button -->
+    <!--            <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+    <!--              <span aria-hidden="true">&times;</span>-->
+    <!--            </button>-->
+    <!--          <div class="col-lg-6 px-0">-->
+    <!-- newsletter image -->
+    <!--            <div class="image"><img src="images/newsletter-popup.jpg" alt="products" class="img-fluid w-100 rounded-left"></div>-->
+    <!--          </div>-->
+    <!--          <div class="col-lg-6 align-self-center p-5">-->
+    <!-- Content start -->
+    <!--            <div class="text-center align-self-center">-->
+    <!--              <h3 class="mb-lg-5 mb-4">Lucky You!</h3>-->
+    <!--              <h4>Want an Instant</h4>-->
+    <!--              <h2 class="mb-lg-5 mb-4">10% OFF?</h2>-->
+    <!-- newsletter form -->
+    <!--              <div class="form">-->
+    <!--                <input type="email" class="form-control mb-3" name="email" id="email" placeholder="Email Address">-->
+    <!--                <button class="btn btn-primary w-100" type="submit">Join Us</button>-->
+    <!--              </div>-->
+    <!--            </div>-->
+    <!-- Content end -->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!-- container end -->
+    <!--    </div>-->
+    <!-- modal content end -->
+    <!--  </div>-->
+    <!--</div> -->
+    <!-- /Newsletter Modal -->
+
+
+    <!-- footer -->
+    <footer class="bg-light">
+      <div class="section">
+        <div class="container-fluid">
+          <div class="row" style="padding-left: 150px;">
+            <div class="col-md-3 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Contact</h4>
+              <p>Chembakuth, Edavanna, Kerala - 676123</p>
+              <p>+91 9846427382</p>
+              <p>info@hhhperfumes.in</p>
+              <ul class="list-inline social-icons">
+                <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-instagram"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-google"></i></a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Category</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="shop.html">car perfumes</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">body perfumes</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">car hangings</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Useful Link</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="about.html">Home</a></li>
+                <li class="mb-2"><a class="text-color" href="about.html">About Us</a></li>
+                <li class="mb-2"><a class="text-color" href="contactus.html">Support</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">Our Shop</a></li>
+                <li class="mb-2"><a class="text-color" href="contactus.html">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 text-center text-sm-left">
+              <h4 class="mb-4">Our Policies</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="404.html">Privacy Policy</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Terms & Conditions</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Cookie Policy</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Terms of Sale</a></li>
+                <li class="mb-2"><a class="text-color" href="dashboard.html"> Shipping & Returns</a></li>
+              </ul>
+            </div>
+
+            <div id="newsletterSection" class="col-md-2 col-sm-12 text-center text-sm-left">
+              <h4 class="mb-4">Our Newsletter</h4>
+              <p class="mb-3">Subscribe to our Newsletter to receive early discount offers</p>
+
+              <form id="newsletterForm" class="d-flex flex-column">
+                <input type="email" name="email" required class="form-control rounded-0 border-0 mb-3"
+                  placeholder="Enter your email">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+              </form>
+            </div>
+
+            <!-- Thank you message (hidden by default) -->
+            <div id="thankYouMsg" class="col-md-2 col-sm-12 text-center text-sm-left text-success"
+              style="display:none;">
+              <h4 class="mb-4">Thank you for subscribing!</h4>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="footer_main py-4">
+        <div class="container-fluid">
+          <div class="row" style="padding-left: 40px;">
+            <div class="col-md-5 text-center text-md-left mb-4 mb-md-0 align-self-center">
+              <p class="text-white mb-0">HHH perfumes &copy; 2025 all right reserved</p>
+            </div>
+            <!-- <div class="col-md-2 text-center text-md-left mb-4 mb-md-0"> 
+          <img src="images/LH_all_page-0001-removebg (1).png" alt="logo" style="width: 100px;">
+        </div> -->
+            <div class="col-md-5 text-center text-md-right mb-4 mb-md-0">
+              <ul class="list-inline">
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-1.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-2.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-3.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-4.jpg" alt="card"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- /footer -->
+
+  </div>
+  <!-- /main wrapper -->
+
+  <!-- jQuery -->
+  <script src="plugins/jQuery/jquery.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <script src="plugins/slick/slick.min.js"></script>
+  <script src="plugins/venobox/venobox.min.js"></script>
+  <script src="plugins/aos/aos.js"></script>
+  <script src="plugins/syotimer/jquery.syotimer.js"></script>
+  <script src="plugins/instafeed/instafeed.min.js"></script>
+  <script src="plugins/zoom-master/jquery.zoom.min.js"></script>
+  <script src="plugins/bootstrap-touchspin-master/jquery.bootstrap-touchspin.min.js"></script>
+  <script src="plugins/nice-select/jquery.nice-select.min.js"></script>
+  <script src="plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+  <!-- google map -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+  <script src="plugins/google-map/gmap.js"></script>
+  <!-- Main Script -->
+  <script src="js/script.js"></script>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- LightWidget WIDGET -->
+  <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+
+
+
+
+  <script>
+    document.getElementById("newsletterForm").addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent default form submission
+
+      const form = e.target;
+      const formData = new FormData(form);
+
+      fetch("https://formspree.io/f/mnnzvlwe", {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: formData
+      }).then(response => {
+        if (response.ok) {
+          // Hide the newsletter section
+          document.getElementById("newsletterSection").style.display = "none";
+          // Show the thank-you message
+          document.getElementById("thankYouMsg").style.display = "block";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      }).catch(error => {
+        alert("Error submitting form.");
+      });
+    });
+  </script>
+
+  
+
+ <script>
+    document.querySelectorAll('.card').forEach(card => {
+      const priceElement = card.querySelector('.price');
+      const qtyElement = card.querySelector('.qty');
+      const selectElement = card.querySelector('.size-select');
+
+      let quantity = 1;
+
+      function updatePrice() {
+        const size = selectElement.value;
+        const basePrice = parseInt(card.dataset[`price-${size}`]);
+        priceElement.textContent = "₹ " + (basePrice * quantity);
+      }
+
+      // Quantity buttons
+      card.querySelector('.increase').addEventListener('click', () => {
+        quantity++;
+        qtyElement.textContent = quantity;
+        updatePrice();
+      });
+
+      card.querySelector('.decrease').addEventListener('click', () => {
+        if (quantity > 1) {
+          quantity--;
+          qtyElement.textContent = quantity;
+          updatePrice();
+        }
+      });
+
+      // Size change
+      selectElement.addEventListener('change', () => {
+        quantity = 1;
+        qtyElement.textContent = 1;
+        updatePrice();
+      });
+
+      // Initialize
+      updatePrice();
+    });
+  </script> 
+
+
+</body>
+
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping - HHH Perfumes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Bootstrap CSS (optional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/venobox/venobox.css">
+  <link rel="stylesheet" href="plugins/animate/animate.css">
+  <link rel="stylesheet" href="plugins/aos/aos.css">
+  <link rel="stylesheet" href="plugins/bootstrap-touchspin-master/jquery.bootstrap-touchspin.min.css">
+  <link rel="stylesheet" href="plugins/nice-select/nice-select.css">
+  <link rel="stylesheet" href="plugins/bootstrap-slider/bootstrap-slider.min.css">
+
+  <!-- Main Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+
+<style>
+/* General Layout */
+.product-section {
+  padding-top: 150px;
+  padding-bottom: 40px;
+}
+
+/* Banner Section
+.banner {
+  margin-top: 100px;
+  text-align: center;
+}
+.banner img {
+  width: 100%;
+  max-height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+} */
+
+/* Dropdown */
+.dropdown-container {
+  text-align: right;
+  margin-bottom: 10px;
+}
+/* ===================== CATEGORY DROPDOWN ===================== */
+.category-section {
+  padding: 120px 30px 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.category-dropdown {
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 220px;
+}
+
+@media (max-width: 767px) {
+  .category-section {
+    justify-content: center;
+    padding: 20px 10px 0;
+  }
+  .category-dropdown {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* ===================== PRODUCT SECTION ===================== */
+.product-section {
+  padding: 40px 20px 60px;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+
+/* Product Grid */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Product Card */
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.product-card {
+  position: relative;
+  width: 270px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 16px;
+  background-color: #fff;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+.product-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Badges */
+.badge {
+  position: absolute;
+  top: 10px;
+  font-size: 12px;
+  padding: 3px 8px;
+  color: white;
+  border-radius: 4px;
+  /* z-index: 2; */
+}
+.sale {
+  background-color: #e50914;
+  left: 10px;
+}
+.bestseller {
+  background-color: #007bff;
+  right: 10px;
+}
+
+/* Product Image */
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+/* Product Info */
+.product-details .brand {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 5px;
+}
+.product-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+.price {
+  font-size: 14px;
+}
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 6px;
+}
+.new-price {
+  color: #e50914;
+  font-weight: bold;
+}
+</style>
+
+</head>
+<body>
+
+     <!-- preloader start -->
+        <div class="preloader">
+            <img src="images/preloader.gif" alt="preloader">
+        </div>
+  <!-- preloader end -->
+
+
+
+
+<!-- navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white w-100" id="navbar">
+    <a class="navbar-brand order-2 order-lg-1" href="index.html"><img class="img-fluid" src="images/HHH logo.png"
+        alt="logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse order-1 order-lg-2" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">home</a>
+        </li>
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link" href="shop.html">PRODUCT</a>
+          <div class="dropdown-menu mega-menu">
+            <div class="row">
+              <div class="col-md-4">
+                <img src="images/collection/product.1.png" alt="Home Fragrance" class="img-fluid mb-2">
+                <h6>Car Perfumes</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+              <div class="col-md-4">
+                <img src="images/categories/bottle.1.png" alt="Office Fragrance" class="img-fluid mb-2">
+                <h6>Body Perfumes</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+              <div class="col-md-4">
+                <img src="images/collection/product.2.png" alt="Car Accessories" class="img-fluid mb-2">
+                <h6>Multipurpose</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contactus.html">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="blog.html">Blog</a>
+        </li>
+      </ul>
+    </div>
+    <div class="order-3 navbar-right-elements d-flex align-items-center">
+      <div class="search-cart d-flex align-items-center">
+        <!-- search -->
+        <div class="search mr-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="#">
+              <input class="search-box" id="search" type="search" placeholder="Enter Keywords...">
+              <button class="search-icon" type="submit"><i class="ti-search"></i></button>
+            </form>
+          </div>
+        </div>
+
+        <!-- cart -->
+        <div class="cart mr-3">
+          <button id="cartOpen" class="cart-btn"><i class="ti-bag"></i><span class="d-xs-none">CART</span></button>
+          <div class="cart-wrapper">
+            <i id="cartClose" class="ti-close cart-close"></i>
+            <h4 class="mb-4">Your Cart</h4>
+            <ul class="pl-0 mb-3">
+              <li class="d-flex border-bottom">
+                <img src="images/categories/bottle.1.png" width="63" height="85" alt="product-img">
+                <div class="mx-3">
+                  <h6>HHH Extrem</h6>
+                  <span>1</span> X <span>$79.00</span>
+                </div>
+                <i class="ti-close"></i>
+              </li>
+              <li class="d-flex border-bottom">
+                <img src="images/categories/bottle.1.png" width="63" height="85" alt="product-img">
+                <div class="mx-3">
+                  <h6>White Oudh</h6>
+                  <span>1 X</span> <span>$79.00</span>
+                </div>
+                <i class="ti-close"></i>
+              </li>
+            </ul>
+            <div class="mb-3">
+              <span>Cart Total</span>
+              <span class="float-right">$178.00</span>
+            </div>
+            <div class="text-center">
+              <a href="#" class="btn btn-dark btn-mobile rounded-0">view cart</a>
+              <a href="#" class="btn btn-dark btn-mobile rounded-0">check out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- login/signup buttons -->
+      <div class="auth-buttons ml-3 d-flex" style="margin-right: 80px;">
+        <a href="login.html" class="btn btn-outline-dark btn-sm mr-2">Login</a>
+        <a href="signup.html" class="btn btn-dark btn-sm">Sign Up</a>
+      </div>
+    </div>
+
+  </nav>
+  <!-- /navigation -->
+
+
+
+<!-- Banner Section between navbar and products -->
+<!-- <div class="banner">
+  <img src="images/backgrounds/HHH carousel3.jpg" alt="Shop Banner">
+</div> -->
+
+<!-- CATEGORY DROPDOWN -->
+<section class="category-section">
+  <select class="category-dropdown">
+    <option selected disabled>Select Category</option>
+    <option value="car-accessories">Car Perfumes</option>
+    <option value="car-fragrances">Body Perfumes</option>
+    <option value="home-office">Car Hangings</option>
+  </select>
+</section>
+
+<!-- Product Section -->
+<section class="product-section">
+  <div class="container">
+
+    <!-- Product Grid -->
+     <div class="product-grid">
+        <!-- Product Card -->
+        <a href="single_product.html" class="product-card-link">
+                <div class="product-card">
+                    <!-- <span class="badge sale">Sale</span>
+                    <span class="badge bestseller">Best Seller</span> -->
+                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
+                    <div class="product-details">
+                        <p class="brand">involvecarperfume</p>
+                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
+                        <p class="price">
+                            <span class="old-price">₹ 449.00</span>
+                            <span class="new-price">₹ 369.00</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/product/{{ product.id }}/" class="product-card-link">
+                <div class="product-card">
+                    <!-- <span class="badge sale">Sale</span> -->
+                    <span class="badge bestseller">Best Seller</span>
+                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
+                    <div class="product-details">
+                        <p class="brand">involvecarperfume</p>
+                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
+                        <p class="price">
+                            <span class="old-price">₹ 449.00</span>
+                            <span class="new-price">₹ 369.00</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/product/{{ product.id }}/" class="product-card-link">
+                <div class="product-card">
+                    <!-- <span class="badge sale">Sale</span>
+                    <span class="badge bestseller">Best Seller</span> -->
+                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
+                    <div class="product-details">
+                        <p class="brand">involvecarperfume</p>
+                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
+                        <p class="price">
+                            <span class="old-price">₹ 449.00</span>
+                            <span class="new-price">₹ 369.00</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/{{ product.id }}/" class="product-card-link">
+                <div class="product-card">
+                    <span class="badge sale">Sale</span>
+                    <!-- <span class="badge bestseller">Best Seller</span> -->
+                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
+                    <div class="product-details">
+                        <p class="brand">involvecarperfume</p>
+                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
+                        <p class="price">
+                            <span class="old-price">₹ 449.00</span>
+                            <span class="new-price">₹ 369.00</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/{{ product.id }}/" class="product-card-link">
+                <div class="product-card">
+                    <!-- <span class="badge sale">Sale</span>
+                    <span class="badge bestseller">Best Seller</span> -->
+                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
+                    <div class="product-details">
+                        <p class="brand">involvecarperfume</p>
+                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
+                        <p class="price">
+                            <span class="old-price">₹ 449.00</span>
+                            <span class="new-price">₹ 369.00</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/{{ product.id }}/" class="product-card-link">
+                <div class="product-card">
+                    <!-- <span class="badge sale">Sale</span>
+                    <span class="badge bestseller">Best Seller</span> -->
+                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
+                    <div class="product-details">
+                        <p class="brand">involvecarperfume</p>
+                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
+                        <p class="price">
+                            <span class="old-price">₹ 449.00</span>
+                            <span class="new-price">₹ 369.00</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+
+        <!-- Duplicate and update above block for more products -->
+        </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr style="border: none; height: 1.5px; background-color: #cfbfbf; width: 90%; margin: 5px auto;">
+
+
+<!-- footer -->
+<footer class="bg-light">
+      <div class="section">
+        <div class="container-fluid">
+          <div class="row" style="padding-left: 150px;">
+            <div class="col-md-3 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Contact</h4>
+              <p>Chembakuth, Edavanna, Kerala - 676123</p>
+              <p>+91 9846427382</p>
+              <p>info@hhhperfumes.in</p>
+              <ul class="list-inline social-icons">
+                <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-instagram"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-google"></i></a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Category</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="shop.html">car perfumes</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">body perfumes</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">car hangings</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Useful Link</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="about.html">Home</a></li>
+                <li class="mb-2"><a class="text-color" href="about.html">About Us</a></li>
+                <li class="mb-2"><a class="text-color" href="contactus.html">Support</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">Our Shop</a></li>
+                <li class="mb-2"><a class="text-color" href="contactus.html">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 text-center text-sm-left">
+              <h4 class="mb-4">Our Policies</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="404.html">Privacy Policy</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Terms & Conditions</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Cookie Policy</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Terms of Sale</a></li>
+                <li class="mb-2"><a class="text-color" href="dashboard.html"> Shipping & Returns</a></li>
+              </ul>
+            </div>
+
+            <div id="newsletterSection" class="col-md-2 col-sm-12 text-center text-sm-left">
+              <h4 class="mb-4">Our Newsletter</h4>
+              <p class="mb-3">Subscribe to our Newsletter to receive early discount offers</p>
+
+              <form id="newsletterForm" class="d-flex flex-column">
+                <input type="email" name="email" required class="form-control rounded-0 border-0 mb-3"
+                  placeholder="Enter your email">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+              </form>
+            </div>
+
+            <!-- Thank you message (hidden by default) -->
+            <div id="thankYouMsg" class="col-md-2 col-sm-12 text-center text-sm-left text-success"
+              style="display:none;">
+              <h4 class="mb-4">Thank you for subscribing!</h4>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="footer_main py-4">
+        <div class="container-fluid">
+          <div class="row" style="padding-left: 40px;">
+            <div class="col-md-5 text-center text-md-left mb-4 mb-md-0 align-self-center">
+              <p class="text-white mb-0">HHH perfumes &copy; 2025 all right reserved</p>
+            </div>
+            <!-- <div class="col-md-2 text-center text-md-left mb-4 mb-md-0"> 
+          <img src="images/LH_all_page-0001-removebg (1).png" alt="logo" style="width: 100px;">
+        </div> -->
+            <div class="col-md-5 text-center text-md-right mb-4 mb-md-0">
+              <ul class="list-inline">
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-1.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-2.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-3.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-4.jpg" alt="card"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+<!-- /footer -->
+
+</div>
+<!-- /main wrapper -->
+
+<!-- jQuery -->
+<script src="plugins/jQuery/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<script src="plugins/slick/slick.min.js"></script>
+<script src="plugins/venobox/venobox.min.js"></script>
+<script src="plugins/aos/aos.js"></script>
+<script src="plugins/syotimer/jquery.syotimer.js"></script>
+<script src="plugins/instafeed/instafeed.min.js"></script>
+<script src="plugins/zoom-master/jquery.zoom.min.js"></script>
+<script src="plugins/bootstrap-touchspin-master/jquery.bootstrap-touchspin.min.js"></script>
+<script src="plugins/nice-select/jquery.nice-select.min.js"></script>
+<script src="plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+<!-- google map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+<script src="plugins/google-map/gmap.js"></script>
+<!-- Main Script -->
+<script src="js/script.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - HHH Perfumes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Bootstrap CSS (optional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+
+  <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/venobox/venobox.css">
+  <link rel="stylesheet" href="plugins/animate/animate.css">
+  <link rel="stylesheet" href="plugins/aos/aos.css">
+  <link rel="stylesheet" href="plugins/bootstrap-touchspin-master/jquery.bootstrap-touchspin.min.css">
+  <link rel="stylesheet" href="plugins/nice-select/nice-select.css">
+  <link rel="stylesheet" href="plugins/bootstrap-slider/bootstrap-slider.min.css">
+
+  <!-- Main Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+
+  <style>
+    .herohead {
+      background: url(images/backgrounds/deal.jpg);
+      color: rgba(255, 255, 255, 0);
+
+      padding: 150px 0 50px;
+      text-align: center;
+      position: relative;
+
+    }
+
+    .herohead::after {
+      content: '';
+      background-image: url('pattern.png');
+      /* Replace with actual image */
+      background-size: contain;
+      opacity: 0.2;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      z-index: 0;
+    }
+
+    .herohead h1 {
+      position: relative;
+      z-index: 1;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .check-list i {
+      color: orange;
+      margin-right: 8px;
+    }
+
+    .icon-text {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .certification-logos {
+      padding: 20px 0;
+      gap: 100px;
+      flex-wrap: wrap;
+    }
+
+    .certification-logos img {
+      max-height: 80px;
+      width: auto;
+      margin: 10px;
+      object-fit: contain;
+      filter: grayscale(30%);
+      transition: filter 0.3s ease;
+    }
+
+    .certification-logos img:hover {
+      filter: grayscale(0%);
+    }
+
+
+
+    .ratings i {
+      color: orange;
+    }
+
+    .ratings small {
+      color: gray;
+    }
+
+
+    .rating-card {
+      width: 220px;
+      height: 80px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: left center;
+      border-radius: 10px;
+      padding-left: 70px;
+      /* space for logo on left */
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      backdrop-filter: brightness(0.5);
+      /* for readability */
+    }
+
+    .amazon-card {
+      background-image: url('images/amazon-logo.png');
+      /* Replace with your path */
+      background-color: #000000;
+      /* fallback */
+    }
+
+    .flipkart-card {
+      background-image: url('images/flipkart-logo.png');
+      /* Replace with your path */
+      background-color: #000;
+      /* fallback */
+    }
+
+    .review-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      padding: 5px;
+      background-color: white;
+      object-fit: contain;
+    }
+
+    /* ============ Responsive Styles ============ */
+    @media (max-width: 991px) {
+      .herohead {
+        padding: 100px 0 30px;
+        background-position: center;
+      }
+
+      .herohead h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .check-list .icon-text {
+        font-size: 0.95rem;
+      }
+
+      .col-md-6 img {
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      .review-box {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        margin-bottom: 20px;
+      }
+
+      .review-box img {
+        width: 35px;
+        height: 35px;
+      }
+
+      .certification-logos {
+        gap: 20px;
+        justify-content: center !important;
+      }
+
+      .certification-logos img {
+        max-height: 60px;
+        margin: 5px;
+      }
+
+      .auth-buttons {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .search-cart {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .herohead {
+        padding: 70px 0 20px;
+      }
+
+      .herohead h1 {
+        font-size: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.2rem;
+      }
+
+      .rating-card {
+        width: 100%;
+        padding-left: 60px;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+
+      .footer_main p {
+        font-size: 0.85rem;
+      }
+
+      .footer_main ul img {
+        height: 20px;
+      }
+
+      .navbar-brand img {
+        max-width: 120px;
+      }
+
+      .cart-wrapper,
+      .search-wrapper {
+        right: 10px;
+        left: 10px;
+        width: auto;
+      }
+
+      .dropdown-menu.mega-menu {
+        width: 100vw;
+        padding: 20px;
+      }
+
+      .mega-menu .col-md-4 {
+        margin-bottom: 20px;
+      }
+
+      .mega-menu .col-md-4 img {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .why-choose-images img {
+        width: 100% !important;
+        margin-bottom: 15px;
+      }
+
+      .navbar .navbar-collapse {
+        background-color: white;
+        padding: 15px;
+      }
+
+      .navbar .nav-link {
+        padding: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- preloader start -->
+  <div class="preloader">
+    <img src="images/preloader.gif" alt="preloader">
+  </div>
+  <!-- preloader end -->
+
+
+
+
+  <!-- navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white w-100" id="navbar">
+    <a class="navbar-brand order-2 order-lg-1" href="index.html"><img class="img-fluid" src="images/HHH logo.png"
+        alt="logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse order-1 order-lg-2" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">home</a>
+        </li>
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link" href="shop.html">PRODUCT</a>
+          <div class="dropdown-menu mega-menu">
+            <div class="row">
+              <div class="col-md-4">
+                <img src="images/collection/product.1.png" alt="Home Fragrance" class="img-fluid mb-2">
+                <h6>Car Perfumes</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+              <div class="col-md-4">
+                <img src="images/categories/bottle.1.png" alt="Office Fragrance" class="img-fluid mb-2">
+                <h6>Body Perfumes</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+              <div class="col-md-4">
+                <img src="images/collection/product.2.png" alt="Car Accessories" class="img-fluid mb-2">
+                <h6>Multipurpose</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contactus.html">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="blog.html">Blog</a>
+        </li>
+      </ul>
+    </div>
+    <div class="order-3 navbar-right-elements d-flex align-items-center">
+      <div class="search-cart d-flex align-items-center">
+        <!-- search -->
+        <div class="search mr-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="#">
+              <input class="search-box" id="search" type="search" placeholder="Enter Keywords...">
+              <button class="search-icon" type="submit"><i class="ti-search"></i></button>
+            </form>
+          </div>
+        </div>
+
+        <!-- cart -->
+        <div class="cart mr-3">
+          <button id="cartOpen" class="cart-btn"><i class="ti-bag"></i><span class="d-xs-none">CART</span></button>
+          <div class="cart-wrapper">
+            <i id="cartClose" class="ti-close cart-close"></i>
+            <h4 class="mb-4">Your Cart</h4>
+            <ul class="pl-0 mb-3">
+              <li class="d-flex border-bottom">
+                <img src="images/categories/bottle.1.png" width="63" height="85" alt="product-img">
+                <div class="mx-3">
+                  <h6>HHH Extrem</h6>
+                  <span>1</span> X <span>$79.00</span>
+                </div>
+                <i class="ti-close"></i>
+              </li>
+              <li class="d-flex border-bottom">
+                <img src="images/categories/bottle.1.png" width="63" height="85" alt="product-img">
+                <div class="mx-3">
+                  <h6>White Oudh</h6>
+                  <span>1 X</span> <span>$79.00</span>
+                </div>
+                <i class="ti-close"></i>
+              </li>
+            </ul>
+            <div class="mb-3">
+              <span>Cart Total</span>
+              <span class="float-right">$178.00</span>
+            </div>
+            <div class="text-center">
+              <a href="#" class="btn btn-dark btn-mobile rounded-0">view cart</a>
+              <a href="#" class="btn btn-dark btn-mobile rounded-0">check out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- login/signup buttons -->
+      <div class="auth-buttons ml-3 d-flex" style="margin-right: 80px;">
+        <a href="login.html" class="btn btn-outline-dark btn-sm mr-2">Login</a>
+        <a href="signup.html" class="btn btn-dark btn-sm">Sign Up</a>
+      </div>
+    </div>
+
+  </nav>
+  <!-- /navigation -->
+
+
+
+
+
+
+  <!-- Hero Section -->
+  <section class="herohead">
+    <!-- <div class="container"> -->
+    <h1>About Us</h1>
+    <!-- </div> -->
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h2 class="section-title mb-4">Why Choose Us</h2>
+          <p>Welcome to HHH Perfumes, where passion meets the art of perfumery. Established in 1999, we have been
+            crafting exceptional fragrances that inspire, uplift, and captivate.</p>
+          <p>At HHH Perfume, we believe that fragrance is more than just a scent—it's an expression of personality,
+            style, and memories.
+          <div class="check-list mt-3">
+            <div class="icon-text"><i class="bi bi-check-circle-fill"></i> Engineered for Long-Lasting Car Freshness
+            </div>
+            <div class="icon-text"><i class="bi bi-check-circle-fill"></i> Crafted Using Premium Automotive-Grade
+              Ingredients</div>
+            <div class="icon-text"><i class="bi bi-check-circle-fill"></i> Designed to Eliminate Odors, Not Just Mask
+              Them</div>
+            <div class="icon-text"><i class="bi bi-check-circle-fill"></i> Collaborations with Master Perfumers for
+              Signature Scents</div>
+          </div>
+
+        </div>
+        <div class="col-md-6 d-flex flex-wrap gap-3 justify-content-center">
+          <img src="images/collection/product.1.png" class="img-fluid rounded" style="max-width: 48%;">
+          <img src="images/collection/product.2.png" class="img-fluid rounded" style="max-width: 48%;">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Heritage Aromas -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <img src="images/collection/product.2.png" class="img-fluid rounded" alt="Nature India">
+          <!-- Replace with actual image -->
+        </div>
+        <div class="col-md-6">
+          <h6 class="text-orange fw-bold">Product Of India</h6>
+          <h2 class="section-title">Timeless Fragrances: Crafted with Passion</h2>
+          <blockquote class="fst-italic text-muted border-start ps-3 my-3">
+            “Discover the Essence of HHHPerfumes, Where Passion Meets Craftsmanship. Embark on a Scented Journey of
+            Elegance and Expression.”
+          </blockquote>
+          <p>At HHHPerfumes, our story goes beyond just fragrance. Since 1999, we’ve blended the finest ingredients into
+            captivating aromas that celebrate individuality, emotion, and timeless beauty—crafted to enhance every mood
+            and moment.</p>
+
+          <div class="d-flex gap-5 align-items-center mt-3">
+            <!-- Amazon -->
+            <div class="review-box d-flex align-items-center gap-3">
+              <img src="images/amazon-logo.png" alt="Amazon" class="review-logo">
+              <div>
+                <div class="d-flex align-items-center gap-1 text-warning">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star"></i>
+
+                  <span class="text-muted ms-2 fw-semibold">(3.9/5)</span>
+                </div>
+                <div class="text-muted mt-1"><strong>1000+</strong> • <strong>Amazon Reviews</strong></div>
+              </div>
+            </div>
+
+            <!-- Flipkart -->
+            <div class="review-box d-flex align-items-center gap-3">
+              <img src="images/flipkart-logo.png" alt="Flipkart" class="review-logo">
+              <div>
+                <div class="d-flex align-items-center gap-1 text-warning">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                  <span class="text-muted ms-2 fw-semibold">(4.1/5)</span>
+                </div>
+                <div class="text-muted mt-1"><strong>1000+</strong> • <strong>Flipkart Reviews</strong></div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">Our Standards: Certified & Recognized</h2>
+
+      <hr style="border: none; height: 1px; background-color: #ff4135; width: 100%; margin: 5px auto;">
+
+      <div class="certification-logos d-flex flex-wrap justify-content-center align-items-center">
+        <img src="images/iso.png" alt="ISO Certified">
+        <img src="images/gmp.png" alt="OEM Certified">
+        <img src="images/ifra.svg" alt="NABCB">
+        <img src="images/ifra.png" alt="DUNS Registered">
+        <img src="images/msds.avif" alt="UKAS">
+        <img src="images/urs.svg" alt="URS">
+      </div>
+
+      <hr style="border: none; height: 1px; background-color: #ff4135; width: 100%; margin: 5px auto;">
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <ul class="list-unstyled">
+            <li><i class="bi bi-check-circle-fill text-warning"></i> Rich vanilla essence delivers long-lasting
+              freshness.</li>
+            <li><i class="bi bi-check-circle-fill text-warning"></i> Balanced formulation prevents overpowering
+              intensity.</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-unstyled">
+            <li><i class="bi bi-check-circle-fill text-warning"></i> Every spray maintains consistent aroma quality.
+            </li>
+            <li><i class="bi bi-check-circle-fill text-warning"></i> Natural extracts reduce irritation and enhance
+              appeal.</li>
+            <li><i class="bi bi-check-circle-fill text-warning"></i> Crafted for smooth diffusion and soothing ambiance.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <hr style="border: none; height: 1.5px; background-color: #cfbfbf; width: 90%; margin: 5px auto;">
+
+
+  <!-- footer -->
+  <footer class="bg-light">
+      <div class="section">
+        <div class="container-fluid">
+          <div class="row" style="padding-left: 150px;">
+            <div class="col-md-3 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Contact</h4>
+              <p>Chembakuth, Edavanna, Kerala - 676123</p>
+              <p>+91 9846427382</p>
+              <p>info@hhhperfumes.in</p>
+              <ul class="list-inline social-icons">
+                <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-instagram"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-google"></i></a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Category</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="shop.html">car perfumes</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">body perfumes</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">car hangings</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Useful Link</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="about.html">Home</a></li>
+                <li class="mb-2"><a class="text-color" href="about.html">About Us</a></li>
+                <li class="mb-2"><a class="text-color" href="contactus.html">Support</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">Our Shop</a></li>
+                <li class="mb-2"><a class="text-color" href="contactus.html">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 text-center text-sm-left">
+              <h4 class="mb-4">Our Policies</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="404.html">Privacy Policy</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Terms & Conditions</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Cookie Policy</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Terms of Sale</a></li>
+                <li class="mb-2"><a class="text-color" href="dashboard.html"> Shipping & Returns</a></li>
+              </ul>
+            </div>
+
+            <div id="newsletterSection" class="col-md-2 col-sm-12 text-center text-sm-left">
+              <h4 class="mb-4">Our Newsletter</h4>
+              <p class="mb-3">Subscribe to our Newsletter to receive early discount offers</p>
+
+              <form id="newsletterForm" class="d-flex flex-column">
+                <input type="email" name="email" required class="form-control rounded-0 border-0 mb-3"
+                  placeholder="Enter your email">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+              </form>
+            </div>
+
+            <!-- Thank you message (hidden by default) -->
+            <div id="thankYouMsg" class="col-md-2 col-sm-12 text-center text-sm-left text-success"
+              style="display:none;">
+              <h4 class="mb-4">Thank you for subscribing!</h4>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="footer_main py-4">
+        <div class="container-fluid">
+          <div class="row" style="padding-left: 40px;">
+            <div class="col-md-5 text-center text-md-left mb-4 mb-md-0 align-self-center">
+              <p class="text-white mb-0">HHH perfumes &copy; 2025 all right reserved</p>
+            </div>
+            <!-- <div class="col-md-2 text-center text-md-left mb-4 mb-md-0"> 
+          <img src="images/LH_all_page-0001-removebg (1).png" alt="logo" style="width: 100px;">
+        </div> -->
+            <div class="col-md-5 text-center text-md-right mb-4 mb-md-0">
+              <ul class="list-inline">
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-1.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-2.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-3.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-4.jpg" alt="card"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <!-- /footer -->
+
+  <!-- /main wrapper -->
+
+  <!-- jQuery -->
+  <script src="plugins/jQuery/jquery.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <script src="plugins/slick/slick.min.js"></script>
+  <script src="plugins/venobox/venobox.min.js"></script>
+  <script src="plugins/aos/aos.js"></script>
+  <script src="plugins/syotimer/jquery.syotimer.js"></script>
+  <script src="plugins/instafeed/instafeed.min.js"></script>
+  <script src="plugins/zoom-master/jquery.zoom.min.js"></script>
+  <script src="plugins/bootstrap-touchspin-master/jquery.bootstrap-touchspin.min.js"></script>
+  <script src="plugins/nice-select/jquery.nice-select.min.js"></script>
+  <script src="plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+  <!-- google map -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+  <script src="plugins/google-map/gmap.js"></script>
+  <!-- Main Script -->
+  <script src="js/script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+</body>
+
+</html>

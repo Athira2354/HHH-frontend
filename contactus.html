@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - HHH Perfumes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Bootstrap CSS (optional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/venobox/venobox.css">
+  <link rel="stylesheet" href="plugins/animate/animate.css">
+  <link rel="stylesheet" href="plugins/aos/aos.css">
+  <link rel="stylesheet" href="plugins/bootstrap-touchspin-master/jquery.bootstrap-touchspin.min.css">
+  <link rel="stylesheet" href="plugins/nice-select/nice-select.css">
+  <link rel="stylesheet" href="plugins/bootstrap-slider/bootstrap-slider.min.css">
+
+  <!-- Main Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+
+  <style>
+
+    .herohead {
+      background: url(images/backgrounds/deal.jpg);
+      color: rgba(255, 255, 255, 0);
+
+      padding: 150px 0 50px;
+      text-align: center;
+      position: relative;
+
+    }
+
+    .herohead::after {
+      content: '';
+      background-image: url('pattern.png');
+      /* Replace with actual image */
+      background-size: contain;
+      opacity: 0.2;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      z-index: 0;
+    }
+
+    .herohead h1 {
+      position: relative;
+      z-index: 1;
+      font-weight: 700;
+    }
+
+
+
+    .contact_area {
+      padding: 60px 0;
+      padding-top: 150px;
+    }
+
+    .contact_message h3 {
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .contact_message ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .contact_message ul li {
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    .contact_message ul li i {
+      margin-right: 10px;
+      color: #555;
+      width: 20px;
+      text-align: center;
+    }
+
+    .contact_message a {
+      color: #dc3545;
+      text-decoration: none;
+    }
+
+    .form-control {
+      border-radius: 0;
+      border: 1px solid #ddd;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    .contact-label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .contact-btn {
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      background-color: #0b5ed7;
+    }
+
+    .form-message {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- preloader start -->
+  <div class="preloader">
+    <img src="images/preloader.gif" alt="preloader">
+  </div>
+  <!-- preloader end -->
+
+
+
+
+  <!-- navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white w-100" id="navbar">
+    <a class="navbar-brand order-2 order-lg-1" href="index.html"><img class="img-fluid" src="images/HHH logo.png"
+        alt="logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse order-1 order-lg-2" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">home</a>
+        </li>
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link" href="shop.html">PRODUCT</a>
+          <div class="dropdown-menu mega-menu">
+            <div class="row">
+              <div class="col-md-4">
+                <img src="images/collection/product.1.png" alt="Home Fragrance" class="img-fluid mb-2">
+                <h6>Car Perfumes</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+              <div class="col-md-4">
+                <img src="images/categories/bottle.1.png" alt="Office Fragrance" class="img-fluid mb-2">
+                <h6>Body Perfumes</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+              <div class="col-md-4">
+                <img src="images/collection/product.2.png" alt="Car Accessories" class="img-fluid mb-2">
+                <h6>Multipurpose</h6>
+                <a class="dropdown-item" href="#">Air Fresheners</a>
+                <a class="dropdown-item" href="#">Fragrance Diffusers</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contactus.html">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="blog.html">Blog</a>
+        </li>
+      </ul>
+    </div>
+    <div class="order-3 navbar-right-elements d-flex align-items-center">
+      <div class="search-cart d-flex align-items-center">
+        <!-- search -->
+        <div class="search mr-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="#">
+              <input class="search-box" id="search" type="search" placeholder="Enter Keywords...">
+              <button class="search-icon" type="submit"><i class="ti-search"></i></button>
+            </form>
+          </div>
+        </div>
+
+        <!-- cart -->
+        <div class="cart mr-3">
+          <button id="cartOpen" class="cart-btn"><i class="ti-bag"></i><span class="d-xs-none">CART</span></button>
+          <div class="cart-wrapper">
+            <i id="cartClose" class="ti-close cart-close"></i>
+            <h4 class="mb-4">Your Cart</h4>
+            <ul class="pl-0 mb-3">
+              <li class="d-flex border-bottom">
+                <img src="images/categories/bottle.1.png" width="63" height="85" alt="product-img">
+                <div class="mx-3">
+                  <h6>HHH Extrem</h6>
+                  <span>1</span> X <span>$79.00</span>
+                </div>
+                <i class="ti-close"></i>
+              </li>
+              <li class="d-flex border-bottom">
+                <img src="images/categories/bottle.1.png" width="63" height="85" alt="product-img">
+                <div class="mx-3">
+                  <h6>White Oudh</h6>
+                  <span>1 X</span> <span>$79.00</span>
+                </div>
+                <i class="ti-close"></i>
+              </li>
+            </ul>
+            <div class="mb-3">
+              <span>Cart Total</span>
+              <span class="float-right">$178.00</span>
+            </div>
+            <div class="text-center">
+              <a href="#" class="btn btn-dark btn-mobile rounded-0">view cart</a>
+              <a href="#" class="btn btn-dark btn-mobile rounded-0">check out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- login/signup buttons -->
+      <div class="auth-buttons ml-3 d-flex" style="margin-right: 80px;">
+        <a href="login.html" class="btn btn-outline-dark btn-sm mr-2">Login</a>
+        <a href="signup.html" class="btn btn-dark btn-sm">Sign Up</a>
+      </div>
+    </div>
+
+  </nav>
+  <!-- /navigation -->
+
+
+<section class="herohead">
+    <!-- <div class="container"> -->
+    <h1>Contact Us</h1>
+    <!-- </div> -->
+  </section>
+
+
+
+  <!-- Contact Section -->
+  <section class="contact_area">
+    <div class="container">
+      <div class="row">
+
+        <!-- Left: Contact Info -->
+        <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+          <div class="contact_message content">
+            <p>HHH perfumes description</p>
+            <ul>
+              <li><i class="fa fa-fax"></i> Address : chembakuth, Edavanna , Kerala - 676123</li>
+              <li><i class="fa fa-phone"></i> <a href="mailto:info@hhhperfumes.in">info@hhhperfumes.in</a></li>
+              <li><i class="fa fa-envelope"></i> 9846427382</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div class="col-lg-6 col-md-12">
+          <div class="contact_message form">
+            <h3>Keep In Touch</h3>
+            <form action="https://formsubmit.co/info@hhhperfumes.in" method="POST">
+              <!-- Hidden config -->
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+
+              <label class="contact-label" for="name">Your Name (required)</label>
+              <input id="name" name="name" placeholder="Name *" type="text" class="form-control" required>
+
+              <label class="contact-label" for="email">Your Email (required)</label>
+              <input id="email" name="email" placeholder="Email *" type="email" class="form-control" required>
+
+              <label class="contact-label" for="subject">Subject</label>
+              <input id="subject" name="subject" placeholder="Subject *" type="text" class="form-control" required>
+
+              <label class="contact-label" for="message">Your Message</label>
+              <textarea id="message" name="message" placeholder="Message *" class="form-control" rows="5"
+                required></textarea>
+
+              <button type="submit" class="contact-btn mt-3">Send</button>
+              <p class="form-message"></p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr style="border: none; height: 1.5px; background-color: #cfbfbf; width: 90%; margin: 5px auto;">
+
+
+
+
+
+  <!-- footer -->
+  <footer class="bg-light">
+      <div class="section">
+        <div class="container-fluid">
+          <div class="row" style="padding-left: 150px;">
+            <div class="col-md-3 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Contact</h4>
+              <p>Chembakuth, Edavanna, Kerala - 676123</p>
+              <p>+91 9846427382</p>
+              <p>info@hhhperfumes.in</p>
+              <ul class="list-inline social-icons">
+                <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-instagram"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="ti-google"></i></a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Category</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="shop.html">car perfumes</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">body perfumes</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">car hangings</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-5 mb-md-0 text-center text-sm-left">
+              <h4 class="mb-4">Useful Link</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="about.html">Home</a></li>
+                <li class="mb-2"><a class="text-color" href="about.html">About Us</a></li>
+                <li class="mb-2"><a class="text-color" href="contactus.html">Support</a></li>
+                <li class="mb-2"><a class="text-color" href="shop.html">Our Shop</a></li>
+                <li class="mb-2"><a class="text-color" href="contactus.html">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 text-center text-sm-left">
+              <h4 class="mb-4">Our Policies</h4>
+              <ul class="pl-0 list-unstyled">
+                <li class="mb-2"><a class="text-color" href="404.html">Privacy Policy</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Terms & Conditions</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Cookie Policy</a></li>
+                <li class="mb-2"><a class="text-color" href="404.html">Terms of Sale</a></li>
+                <li class="mb-2"><a class="text-color" href="dashboard.html"> Shipping & Returns</a></li>
+              </ul>
+            </div>
+
+            <div id="newsletterSection" class="col-md-2 col-sm-12 text-center text-sm-left">
+              <h4 class="mb-4">Our Newsletter</h4>
+              <p class="mb-3">Subscribe to our Newsletter to receive early discount offers</p>
+
+              <form id="newsletterForm" class="d-flex flex-column">
+                <input type="email" name="email" required class="form-control rounded-0 border-0 mb-3"
+                  placeholder="Enter your email">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+              </form>
+            </div>
+
+            <!-- Thank you message (hidden by default) -->
+            <div id="thankYouMsg" class="col-md-2 col-sm-12 text-center text-sm-left text-success"
+              style="display:none;">
+              <h4 class="mb-4">Thank you for subscribing!</h4>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="footer_main py-4">
+        <div class="container-fluid">
+          <div class="row" style="padding-left: 40px;">
+            <div class="col-md-5 text-center text-md-left mb-4 mb-md-0 align-self-center">
+              <p class="text-white mb-0">HHH perfumes &copy; 2025 all right reserved</p>
+            </div>
+            <!-- <div class="col-md-2 text-center text-md-left mb-4 mb-md-0"> 
+          <img src="images/LH_all_page-0001-removebg (1).png" alt="logo" style="width: 100px;">
+        </div> -->
+            <div class="col-md-5 text-center text-md-right mb-4 mb-md-0">
+              <ul class="list-inline">
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-1.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-2.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-3.jpg" alt="card"></li>
+                <li class="list-inline-item"><img class="img-fluid rounded atm-card-img"
+                    src="images/payment-card/card-4.jpg" alt="card"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <!-- /footer -->
+
+  </div>
+  <!-- /main wrapper -->
+
+  <!-- jQuery -->
+  <script src="plugins/jQuery/jquery.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <script src="plugins/slick/slick.min.js"></script>
+  <script src="plugins/venobox/venobox.min.js"></script>
+  <script src="plugins/aos/aos.js"></script>
+  <script src="plugins/syotimer/jquery.syotimer.js"></script>
+  <script src="plugins/instafeed/instafeed.min.js"></script>
+  <script src="plugins/zoom-master/jquery.zoom.min.js"></script>
+  <script src="plugins/bootstrap-touchspin-master/jquery.bootstrap-touchspin.min.js"></script>
+  <script src="plugins/nice-select/jquery.nice-select.min.js"></script>
+  <script src="plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+  <!-- google map -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+  <script src="plugins/google-map/gmap.js"></script>
+  <!-- Main Script -->
+  <script src="js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
