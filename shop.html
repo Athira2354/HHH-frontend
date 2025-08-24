@@ -85,6 +85,7 @@
 /* ===================== PRODUCT SECTION ===================== */
 .product-section {
   padding: 40px 20px 60px;
+  background-color: oklab(97.685% -0.0072 0.01283);
 }
 
 .product-grid {
@@ -116,7 +117,7 @@
   border-radius: 10px;
   overflow: hidden;
   padding: 16px;
-  background-color: #fff;
+  background-color: #ebebed;
   text-align: center;
   transition: box-shadow 0.3s ease;
 }
@@ -135,7 +136,7 @@
   /* z-index: 2; */
 }
 .sale {
-  background-color: #e50914;
+  background-color: #f0e1e2;
   left: 10px;
 }
 .bestseller {
@@ -171,7 +172,7 @@
   margin-right: 6px;
 }
 .new-price {
-  color: #e50914;
+  color: #e61d1d;
   font-weight: bold;
 }
 </style>
@@ -316,123 +317,42 @@
   </select>
 </section>
 
+
 <!-- Product Section -->
 <section class="product-section">
   <div class="container">
 
     <!-- Product Grid -->
      <div class="product-grid">
-        <!-- Product Card -->
-        <a href="single_product.html" class="product-card-link">
-                <div class="product-card">
-                    <!-- <span class="badge sale">Sale</span>
-                    <span class="badge bestseller">Best Seller</span> -->
-                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
-                    <div class="product-details">
-                        <p class="brand">involvecarperfume</p>
-                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
-                        <p class="price">
-                            <span class="old-price">₹ 449.00</span>
-                            <span class="new-price">₹ 369.00</span>
-                        </p>
-                    </div>
-                </div>
-            </a>
+      {% for product in products %}
+        <a href="http://127.0.0.1:8000/products/id/" class="product-card-link">
+         <!-- <div class="product-card">
+             {% if product.is_on_sale %} 
+              <span class="badge sale">Sale</span>
+            {% endif %}
+            {% if product.is_bestseller %}
+              <span class="badge bestseller">Best Seller</span>
+            {% endif %}
+            <img src="" alt="" class="product-image">
+            <div class="product-details">
+              <p class="brand">product brand</p>
+              <h4 class="product-name">product name</h4>
+              <p class="price">
+                {% if product.old_price %}
+                  <span class="old-price">₹product old_price</span>
+                {% endif %}
+                <span class="new-price">₹product.price</span>
+              </p>
+            </div>
+          </div> -->
+        </a>
+      {% empty %}
+        <p>No products available.</p>
+      {% endfor %}
+    </div> 
 
-            <a href="/product/{{ product.id }}/" class="product-card-link">
-                <div class="product-card">
-                    <!-- <span class="badge sale">Sale</span> -->
-                    <span class="badge bestseller">Best Seller</span>
-                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
-                    <div class="product-details">
-                        <p class="brand">involvecarperfume</p>
-                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
-                        <p class="price">
-                            <span class="old-price">₹ 449.00</span>
-                            <span class="new-price">₹ 369.00</span>
-                        </p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="/product/{{ product.id }}/" class="product-card-link">
-                <div class="product-card">
-                    <!-- <span class="badge sale">Sale</span>
-                    <span class="badge bestseller">Best Seller</span> -->
-                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
-                    <div class="product-details">
-                        <p class="brand">involvecarperfume</p>
-                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
-                        <p class="price">
-                            <span class="old-price">₹ 449.00</span>
-                            <span class="new-price">₹ 369.00</span>
-                        </p>
-                    </div>
-                </div>
-            </a>
-            <a href="/product/{{ product.id }}/" class="product-card-link">
-                <div class="product-card">
-                    <span class="badge sale">Sale</span>
-                    <!-- <span class="badge bestseller">Best Seller</span> -->
-                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
-                    <div class="product-details">
-                        <p class="brand">involvecarperfume</p>
-                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
-                        <p class="price">
-                            <span class="old-price">₹ 449.00</span>
-                            <span class="new-price">₹ 369.00</span>
-                        </p>
-                    </div>
-                </div>
-            </a>
-            <a href="/product/{{ product.id }}/" class="product-card-link">
-                <div class="product-card">
-                    <!-- <span class="badge sale">Sale</span>
-                    <span class="badge bestseller">Best Seller</span> -->
-                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
-                    <div class="product-details">
-                        <p class="brand">involvecarperfume</p>
-                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
-                        <p class="price">
-                            <span class="old-price">₹ 449.00</span>
-                            <span class="new-price">₹ 369.00</span>
-                        </p>
-                    </div>
-                </div>
-            </a>
-            <a href="/product/{{ product.id }}/" class="product-card-link">
-                <div class="product-card">
-                    <!-- <span class="badge sale">Sale</span>
-                    <span class="badge bestseller">Best Seller</span> -->
-                    <img src="images/categories/bottle.1.png" alt="Product Image" class="product-image">
-                    <div class="product-details">
-                        <p class="brand">involvecarperfume</p>
-                        <h4 class="product-name">Involve® Elements - Aqua : Spray Air Perfume </h4>
-                        <p class="price">
-                            <span class="old-price">₹ 449.00</span>
-                            <span class="new-price">₹ 369.00</span>
-                        </p>
-                    </div>
-                </div>
-            </a>
-
-        <!-- Duplicate and update above block for more products -->
-        </div>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <hr style="border: none; height: 1.5px; background-color: #cfbfbf; width: 90%; margin: 5px auto;">
 
@@ -535,8 +455,11 @@
 <!-- /footer -->
 
 </div>
-<!-- /main wrapper -->
 
+<!-- /main wrapper -->
+ <!-- <script src="./js/categories.js"></script> -->
+<!-- <script src="./js/product.js"></script> -->
+<!-- <script src="./js/cart.js "></script> -->
 <!-- jQuery -->
 <script src="plugins/jQuery/jquery.min.js"></script>
 <!-- Bootstrap JS -->
@@ -554,8 +477,10 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
 <script src="plugins/google-map/gmap.js"></script>
 <!-- Main Script -->
+<script src="./js/product.js"></script>
+<script src="./js/categories.js"></script>
+<!-- <script src="./js/single_product.js"></script> -->
 <script src="js/script.js"></script>
-
 
 
 
