@@ -23,8 +23,56 @@ async function fetchProductDetails(productId) {
     }
 }
 
+const fetchProductMedia = async (productId) => {
+    const productIdParsed = parseInt(productId);
+    const response = await fetch(`http://127.0.0.1:8000/api/get-product-media/${productIdParsed}`);
+
+    if (!response.ok) {
+        alert("Failed to fetch product media.");
+        return null;
+    }
+    const data = await response.json();
+    return data;
+};
+
 // ✅ Render product details
 async function renderProduct(product) {
+    const productTitle = document.querySelector("body > div > div.product-display > div.product-details > h1");
+    productTitle.textContent = product.name;
+
+    const productPrice = document.querySelector("body > div > div.product-display > div.product-details > p > strong");
+    productPrice.textContent = `₹${product.price}`;
+    const featuresArray= product.description.split(".");
+
+    const feature1 = document.querySelector("body > div > div.features > div > div:nth-child(1) > p");
+    const feature2 = document.querySelector("body > div > div.features > div > div:nth-child(2) > p");
+    const feature3 = document.querySelector("body > div > div.features > div > div:nth-child(3) > p");
+    const feature4 = document.querySelector("body > div > div.features > div > div:nth-child(4) > p");
+    const feature5 = document.querySelector("body > div > div.features > div > div:nth-child(5) > p");
+    const feature6 = document.querySelector("body > div > div.features > div > div:nth-child(6) > p");
+    feature1.textContent = featuresArray[0];
+    feature2.textContent = featuresArray[1];
+    feature3.textContent = featuresArray[2];
+    feature4.textContent = featuresArray[3];
+    feature5.textContent = featuresArray[4];
+    feature6.textContent = featuresArray[5];
+
+    const productMedia = await fetchProductMedia(product.id);
+    // console.log(productMedia);
+    if (productMedia) {
+        const image1 = document.querySelector("body > div > div.product-display > div.thumbnail-images > img:nth-child(1)");
+        const image2 = document.querySelector("body > div > div.product-display > div.thumbnail-images > img:nth-child(2)");
+        const image3 = document.querySelector("body > div > div.product-display > div.thumbnail-images > img:nth-child(3)");
+        if (productMedia) {
+            image1.src = productMedia.image1;
+            image2.src = productMedia.image2;
+            image3.src = productMedia.image3;
+        } else {
+            alert("No product media found.")
+        }
+
+    }
+
     const productDetailsContainer = document.getElementById("product-details-container");
     const thumbnailContainer = document.querySelector(".thumbnail-images");
     const featureGrid = document.querySelector(".feature-grid");
