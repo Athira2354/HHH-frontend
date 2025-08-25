@@ -11,6 +11,41 @@ async function fetchProductDetails(productId) {
 
     try {
         const response = await fetch(apiUrl);
+        console.log("product response",response)
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch product details: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching product details:", error);
+        return null;
+    }
+}
+// ✅ Fetch product details by ID
+const fetchProductMedia = async (productId) => {
+    const productIdParsed = parseInt(productId);
+    const response = await fetch(`http://127.0.0.1:8000/api/get-product-media/${productIdParsed}`);
+
+    if (!response.ok) {
+        alert("Failed to fetch product media.");
+        return null;
+    }
+    const data = await response.json();
+    return data;
+};
+async function fetchProductImages(productId) {
+    if (!productId) {
+        console.error("Product ID is required to fetch details.");
+        return null;
+    }
+
+    const apiUrl = `http://127.0.0.1:8000/api/get-product-media/${productId}`;
+
+    try {
+        const response = await fetch(apiUrl);
+        console.log("image response",response)
 
         if (!response.ok) {
             throw new Error(`Failed to fetch product details: ${response.status}`);
@@ -24,16 +59,20 @@ async function fetchProductDetails(productId) {
 }
 
 // ✅ Render product details
-async function renderProduct(product) {
-    const productDetailsContainer = document.getElementById("product-details-container");
+async function renderProduct(product,productImages) {
+    // console.log("kkskskskskk",productImages,product)
+    const productDetailsContainer = document.querySelector(".product-details");
     const thumbnailContainer = document.querySelector(".thumbnail-images");
-    const featureGrid = document.querySelector(".feature-grid");
+    const featureGrid = document.querySelector("feature-grid");
     const faqList = document.querySelector(".faq ul");
+    const mainImage = document.getElementById("selectedImage");
     const reviewsContainer = document.querySelector(".reviews");
+    // const actionContainer = document.querySelector(".action-buttons");
+    
 
     // Fallback if container missing
     if (!productDetailsContainer) {
-        console.error("Missing #product-details-container in HTML");
+        console.error("Missing #product-details in HTML");
         return;
     }
 
@@ -44,22 +83,72 @@ async function renderProduct(product) {
 
     // ✅ Product Basic Info
     productDetailsContainer.innerHTML = `
-        <h2>${product.name}</h2>
+         <h2>${product.name}</h2>
         <p><strong>Price:</strong> $${product.price}</p>
         <p>${product.description}</p>
+          <div class="quantity-section">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" min="1" value="1">
+                </div>
+
+                <div class="action-buttons">
+                    <a href="checkoutpage.html"><button class="buy-now">Buy it now</button></a>
+                    <button class="wishlist-btn" title="Add to Wishlist">❤️</button>
+                    <a href="http://127.0.0.1:3000/viewcart.html"><button class="add-to-cart">🛒</button></a>
+                </div>
     `;
+        // actionContainer.innerHTML = `<a href="checkoutpage.html"><button class="buy-now">Buy it now</button></a>
+        //             <button class="wishlist-btn" title="Add to Wishlist">❤️</button>
+        //             <a href="http://127.0.0.1:3000/viewcart.html"><button class="add-to-cart">🛒</button></a>`;
+       
+       
 
     // ✅ Thumbnails
-    if (thumbnailContainer) {
+    // if (thumbnailContainer) {
+    //     thumbnailContainer.innerHTML = "";
+    //     if (productImages) {
+    //         console.log('yyyyyyyyyyyyyyyyy',productImages);
+    //         const img = document.createElement("img");
+    //         img.src = productImages.image1;
+    //         // img.alt = productImages.name;
+    //         img.onclick = () => selectImage(img);
+    //         thumbnailContainer.appendChild(img);
+    //          img.src = productImages.image2;
+    //         // img.alt = productImages.name;
+    //         img.onclick = () => selectImage(img);
+    //         thumbnailContainer.appendChild(img);
+    //          img.src = productImages.image3;
+    //         // img.alt = productImages.name;
+    //         img.onclick = () => selectImage(img);
+    //         thumbnailContainer.appendChild(img);
+    //     }
+    // }
+     if (thumbnailContainer) {
         thumbnailContainer.innerHTML = "";
-        if (product.image) {
-            const img = document.createElement("img");
-            img.src = product.image;
-            img.alt = product.name;
-            img.onclick = () => selectImage(img);
-            thumbnailContainer.appendChild(img);
+
+      // Collect available images
+    const images = [productImages.image1, productImages.image2, productImages.image3].filter(Boolean);
+
+    images.forEach((src, index) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = `Image ${index + 1}`;
+        img.onclick = () => selectImage(img);
+        thumbnailContainer.appendChild(img);
+
+        if (index === 0 && mainImage) {
+            mainImage.src = src;  // first image default
         }
+    });
     }
+
+    // ✅ function for switching image
+function selectImage(imgElement) {
+    const mainImage = document.getElementById("selectedImage");
+    if (mainImage) {
+        mainImage.src = imgElement.src;
+    }
+}
 
     // ✅ Features
     if (featureGrid) {
@@ -100,12 +189,12 @@ async function renderProduct(product) {
     }
 }
 
-function selectImage(imgElement) {
-    const mainImage = document.getElementById("selectedImage");
-    if (mainImage) {
-        mainImage.src = imgElement.src;
-    }
-}
+// function selectImage(imgElement) {
+//     const mainImage = document.getElementById("selectedImage");
+//     if (mainImage) {
+//         mainImage.src = imgElement.src;
+//     }
+// }
 
 window.onload=async function () {
     const urlParams = new URLSearchParams(window.location.search);
@@ -117,6 +206,7 @@ window.onload=async function () {
     }
 
     const product = await fetchProductDetails(parseInt(productId));
-    renderProduct(product);
+    const productImages = await fetchProductImages(parseInt(productId));
+    renderProduct(product,productImages);
 }
 

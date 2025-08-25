@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const SHIPPING_COST = 50;
 
+    // ✅ get CSRF token
     function getCSRFToken() {
         let cookieValue = null;
         const cookies = document.cookie.split(";");
@@ -19,8 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return cookieValue;
     }
 
+    // ✅ Fetch cart items from Django
     function fetchCart() {
-        fetch("http://127.0.0.1:8000/cart/", {
+        fetch("http://127.0.0.1:8000/basket-items/view-cart/", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -38,12 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Error Loading cart:", error));
     }
 
-    // render cart to html
+    // ✅ Render cart into HTML
     function renderCart(items) {
         cartTableBody.innerHTML = "";
         let subtotal = 0;
 
-        if (items.length === 0) {
+        if (!items || items.length === 0) {
             cartTableBody.innerHTML = `<tr><td colspan="5" class="text-center">Your cart is empty.</td></tr>`;
         }
 
@@ -54,7 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
             row.innerHTML = `
                 <td>
                     <div class="d-flex align-items-center">
-                        <img src="${item.product_object.image || 'placeholder.jpg'}" class="cart-img me-3" alt="${item.product_object.name}" style="width:60px; height:60px; object-fit:cover;">
+                        <img src="${item.product_object.image || 'placeholder.jpg'}" 
+                             class="cart-img me-3" alt="${item.product_object.name}" 
+                             style="width:60px; height:60px; object-fit:cover;">
                         <div>
                             <strong>${item.product_object.name}</strong><br>
                             <small>${item.product_object.description || ''}</small>
@@ -63,9 +67,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 </td>
                 <td>₹${item.product_object.price}</td>
                 <td>
-                    <input type="number" value="${item.quantity}" min="1" class="form-control quantity-input" data-id="${item.id}" style="width:80px;">
+                    <input type="number" value="${item.quantity}" min="1" 
+                           class="form-control quantity-input" 
+                           data-id="${item.id}" style="width:80px;">
                 </td>
-                <td>₹${itemSubtotal}</td>
+                <td class="item-subtotal">₹${itemSubtotal}</td>
                 <td><span class="remove-btn text-danger" style="cursor:pointer;" data-id="${item.id}">&times;</span></td>
             `;
             cartTableBody.appendChild(row);
@@ -78,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         attachEventListeners();
     }
 
+    // ✅ Add event listeners for quantity change & remove
     function attachEventListeners() {
         document.querySelectorAll(".quantity-input").forEach(input => {
             input.addEventListener("change", function () {
@@ -89,14 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
-                // ✅ update subtotal instantly
+                // update subtotal instantly
                 const price = parseInt(this.closest("tr").querySelector("td:nth-child(2)").textContent.replace("₹", ""));
                 const newSubtotal = price * newQty;
-                this.closest("tr").querySelector("td:nth-child(4)").textContent = `₹${newSubtotal}`;
+                this.closest("tr").querySelector(".item-subtotal").textContent = `₹${newSubtotal}`;
 
                 recalcCartTotals();
 
-                // ✅ sync with backend
+                // sync with backend
                 updateQuantity(itemId, newQty);
             });
         });
@@ -109,8 +116,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // ✅ Update quantity in backend
     function updateQuantity(itemId, quantity) {
-        fetch(`http://127.0.0.1:8000/cart/${itemId}/update-quantity/`, {
+        fetch(`http://127.0.0.1:8000/basket-items/${itemId}/update-quantity/`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -127,8 +135,9 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Error updating quantity:", error));
     }
 
+    // ✅ Remove item from backend
     function removeFromCart(itemId) {
-        fetch(`http://127.0.0.1:8000/cart/${itemId}/remove-from-cart/`, {
+        fetch(`http://127.0.0.1:8000/basket-items/${itemId}/remove-from-cart/`, {
             method: 'DELETE',
             headers: {
                 "X-CSRFToken": getCSRFToken()
@@ -145,11 +154,12 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Error removing item:", error));
     }
 
+    // ✅ Recalculate totals dynamically
     function recalcCartTotals() {
         let subtotal = 0;
 
         document.querySelectorAll("table tbody tr").forEach(row => {
-            const subtotalCell = row.querySelector("td:nth-child(4)");
+            const subtotalCell = row.querySelector(".item-subtotal");
             if (subtotalCell) {
                 const amount = parseInt(subtotalCell.textContent.replace("₹", ""));
                 subtotal += isNaN(amount) ? 0 : amount;
@@ -161,5 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
         totalElement.textContent = `₹${subtotal + (subtotal > 0 ? SHIPPING_COST : 0)}`;
     }
 
+    // ✅ Initial load
     fetchCart();
 });
