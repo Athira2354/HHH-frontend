@@ -1,57 +1,57 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
+    const loginBtn = document.querySelector("body > div > form > button");
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault(); // Stop default form submission
+    loginBtn.addEventListener('click', async function (e) {
+        e.preventDefault();
+        await loginUser();
+    });
+});
 
-    // Collect form data
-    const formData = {
-      email: form.querySelector('input[placeholder="Email"]').value,
-      password: form.querySelector('input[placeholder="Password"]').value,
+async function loginUser() {
+    const email = document.querySelector("body > div > form > input[type=email]");
+    const password = document.querySelector("body > div > form > input[type=password]");
+
+    const requestBody = {
+        // If backend expects username:
+        // username: email.value,
+        
+        // If backend expects email:
+        email: email.value,
+        password: password.value
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/login/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": getCSRFToken(), // CSRF token for Django
-        },
-        body: JSON.stringify(formData),
-      });
+        const response = await fetch("http://127.0.0.1:8000/api/login/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody)
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (response.ok) {
+        if (!response.ok) {
+            console.error("Login failed:", data);
+            alert("Error: " + JSON.stringify(data));
+            return;
+        }
+
+        console.log("Login successful:", data);
         alert("Login successful!");
-        // Save token or session info if provided by backend
-        if (data.token) {
-          localStorage.setItem("authToken", data.token);
-        }
-        // Redirect after login
-        window.location.href = "index.html";
-      } else {
-        alert(data.error || "Invalid email or password");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Something went wrong. Please try again.");
-    }
-  });
+        window.location.href = "shop.html";
 
-  // Helper function to fetch CSRF token from cookies
-  function getCSRFToken() {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      const cookies = document.cookie.split(";");
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.startsWith("csrftoken=")) {
-          cookieValue = cookie.substring("csrftoken=".length, cookie.length);
-          break;
-        }
-      }
+        
+        // // Save token if JWT
+        // if (data.access) {
+        //     localStorage.setItem("access_token", data.access);
+        //     localStorage.setItem("refresh_token", data.refresh);
+        // }
+
+        // Redirect to dashboard/home page
+        
+    } catch (error) {
+        console.error("An error occurred:", error);
+        alert("Something went wrong. Please try again.");
     }
-    return cookieValue;
-  }
-});
+}

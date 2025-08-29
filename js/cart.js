@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ Fetch cart items from Django
     function fetchCart() {
-        fetch("http://127.0.0.1:8000/basket-items/view-cart/", {
+        fetch("http://127.0.0.1:8000/api/basket-items/view-cart/", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ Update quantity in backend
     function updateQuantity(itemId, quantity) {
-        fetch(`http://127.0.0.1:8000/basket-items/${itemId}/update-quantity/`, {
+        fetch(`http://127.0.0.1:8000/api/basket-items/${itemId}/update-quantity/`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ Remove item from backend
     function removeFromCart(itemId) {
-        fetch(`http://127.0.0.1:8000/basket-items/${itemId}/remove-from-cart/`, {
+        fetch(`http://127.0.0.1:8000/api/basket-items/${itemId}/remove-from-cart/`, {
             method: 'DELETE',
             headers: {
                 "X-CSRFToken": getCSRFToken()

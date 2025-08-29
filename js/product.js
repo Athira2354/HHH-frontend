@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
     }
     
-    fetch("http://127.0.0.1:8000/products/")
+    fetch("http://127.0.0.1:8000/api/products/")
     .then(response=>response.json())
     .then(product=>{
         console.log("products:",product);
