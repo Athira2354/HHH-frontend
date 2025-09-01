@@ -309,50 +309,21 @@
 
 <!-- CATEGORY DROPDOWN -->
 <section class="category-section">
-  <select class="category-dropdown">
-    <option selected disabled>Select Category</option>
-    <option value="car-accessories">Car Perfumes</option>
-    <option value="car-fragrances">Body Perfumes</option>
-    <option value="home-office">Car Hangings</option>
-  </select>
+  <select id="category" class="category-dropdown">
+  <option value="">Select Category</option>
+</select>
 </section>
 
 
 <!-- Product Section -->
-<section class="product-section">
-  <div class="container">
 
-    <!-- Product Grid -->
-     <div class="product-grid">
-      {% for product in products %}
-        <a href="http://127.0.0.1:8000/products/id/" class="product-card-link">
-         <!-- <div class="product-card">
-             {% if product.is_on_sale %} 
-              <span class="badge sale">Sale</span>
-            {% endif %}
-            {% if product.is_bestseller %}
-              <span class="badge bestseller">Best Seller</span>
-            {% endif %}
-            <img src="" alt="" class="product-image">
-            <div class="product-details">
-              <p class="brand">product brand</p>
-              <h4 class="product-name">product name</h4>
-              <p class="price">
-                {% if product.old_price %}
-                  <span class="old-price">₹product old_price</span>
-                {% endif %}
-                <span class="new-price">₹product.price</span>
-              </p>
-            </div>
-          </div> -->
-        </a>
-      {% empty %}
-        <p>No products available.</p>
-      {% endfor %}
-    </div> 
+  
 
-  </div>
-</section>
+<div class="product-grid"></div>
+
+
+    
+   
 
 <hr style="border: none; height: 1.5px; background-color: #cfbfbf; width: 90%; margin: 5px auto;">
 
