@@ -25,12 +25,11 @@ const fetchProductMedia = async (productId) => {
     const productIdParsed = parseInt(productId);
     const response = await fetch(`http://127.0.0.1:8000/api/get-product-media/${productIdParsed}`);
 
-    console.log("gfhgfhgffhf",productIdParsed)
 
-    // if (!response.ok) {
-    //     alert("Failed to fetch product media.");
-    //     return null;
-    // }
+    if (!response.ok) {
+        alert("Failed to fetch product media.");
+        return null;
+    }
     const data = await response.json();
     return data;
 };

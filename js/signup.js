@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const signup = document.querySelector("body > div > form > button");
 

@@ -14,9 +14,8 @@ document.addEventListener("DOMContentLoaded",function(){
         productGrid.innerHTML="";
         product.forEach(product=>{
 
-                // const href="./single-product.html"
                 const card = document.createElement("a");
-                card.href = `../single_product.html?id=${product.id}`;  
+                card.href = `/Users/sangeethkumarpg/Desktop/hhh_frontend/HHH-frontend/single_product.html?id=${product.id}`;  
                 card.classList.add("product-card-link");
 
                 card.innerHTML = `
