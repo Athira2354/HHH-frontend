@@ -1,5 +1,3 @@
-// single_product.js
-
 // ✅ Fetch product details by ID
 async function fetchProductDetails(productId) {
     if (!productId) {
@@ -26,6 +24,7 @@ async function fetchProductDetails(productId) {
 const fetchProductMedia = async (productId) => {
     const productIdParsed = parseInt(productId);
     const response = await fetch(`http://127.0.0.1:8000/api/get-product-media/${productIdParsed}`);
+
 
     if (!response.ok) {
         alert("Failed to fetch product media.");
@@ -167,4 +166,3 @@ window.onload=async function () {
     const product = await fetchProductDetails(parseInt(productId));
     renderProduct(product);
 }
-

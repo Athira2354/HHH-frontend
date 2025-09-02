@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const signup = document.querySelector("body > div > form > button");
 
@@ -41,11 +42,10 @@ async function signupUser() {
 
         console.log("User registered successfully:", data);
         alert("User registered successfully!");
+        window.location.href = "login.html"
 
     } catch (error) {
         console.error("An error occurred:", error);
         alert("Something went wrong. Please try again.");
     }
 }
-
-

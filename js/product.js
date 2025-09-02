@@ -7,14 +7,13 @@ document.addEventListener("DOMContentLoaded",function(){
 
     }
     
-    fetch("http://127.0.0.1:8000/products/")
+    fetch("http://127.0.0.1:8000/api/products/")
     .then(response=>response.json())
     .then(product=>{
         console.log("products:",product);
         productGrid.innerHTML="";
         product.forEach(product=>{
 
-            //  const href = "./single-product.html"
                 const card = document.createElement("a");
                 card.href = `/Users/sangeethkumarpg/Desktop/hhh_frontend/HHH-frontend/single_product.html?id=${product.id}`;  
                 card.classList.add("product-card-link");
