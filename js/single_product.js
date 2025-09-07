@@ -8,7 +8,13 @@ async function fetchProductDetails(productId) {
     const apiUrl = `http://127.0.0.1:8000/api/view-product/${productId}/`;
 
     try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+        });
 
         if (!response.ok) {
             throw new Error(`Failed to fetch product details: ${response.status}`);
@@ -62,39 +68,41 @@ async function renderProduct(product) {
         const image1 = document.querySelector("body > div > div.product-display > div.thumbnail-images > img:nth-child(1)");
         const image2 = document.querySelector("body > div > div.product-display > div.thumbnail-images > img:nth-child(2)");
         const image3 = document.querySelector("body > div > div.product-display > div.thumbnail-images > img:nth-child(3)");
+        const selectedImage = document.getElementById("selectedImage");
         if (productMedia) {
             image1.src = productMedia.image1;
             image2.src = productMedia.image2;
             image3.src = productMedia.image3;
+            selectedImage.src = productMedia.image1;
         } else {
             alert("No product media found.")
         }
 
     }
 
-    const productDetailsContainer = document.getElementById("product-details-container");
+    // const productDetailsContainer = document.getElementById("product-details-container");
     const thumbnailContainer = document.querySelector(".thumbnail-images");
     const featureGrid = document.querySelector(".feature-grid");
     const faqList = document.querySelector(".faq ul");
     const reviewsContainer = document.querySelector(".reviews");
 
     // Fallback if container missing
-    if (!productDetailsContainer) {
-        console.error("Missing #product-details-container in HTML");
-        return;
-    }
+    // if (!productDetailsContainer) {
+    //     console.error("Missing #product-details-container in HTML");
+    //     return;
+    // }
 
-    if (!product) {
-        productDetailsContainer.innerHTML = "<p>Product not found or an error occurred.</p>";
-        return;
-    }
+    // if (!product) {
+    //     productDetailsContainer.innerHTML = "<p>Product not found or an error occurred.</p>";
+    //     return;
+    // }
 
     // ✅ Product Basic Info
-    productDetailsContainer.innerHTML = `
-        <h2>${product.name}</h2>
-        <p><strong>Price:</strong> $${product.price}</p>
-        <p>${product.description}</p>
-    `;
+    // productDetailsContainer.innerHTML = `
+    //     <h2>${product.name}</h2>
+    //     <p><strong>Price:</strong> $${product.price}</p>
+    //     <p>${product.description}</p>
+    // `;
 
     // ✅ Thumbnails
     if (thumbnailContainer) {
@@ -166,3 +174,147 @@ window.onload=async function () {
     const product = await fetchProductDetails(parseInt(productId));
     renderProduct(product);
 }
+async function refreshAccessToken() {
+  const refreshToken = sessionStorage.getItem("refresh_token");
+  if (!refreshToken) {
+    alert("Session expired. Please login again.");
+    return false;
+  }
+
+  const response = await fetch("http://127.0.0.1:8000/api/token/refresh/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ refresh: refreshToken })
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    sessionStorage.setItem("access_token", data.access);
+    return true;
+  } else {
+    alert("Session expired. Please login again.");
+    return false;
+  }
+}
+
+async function addProductToCart(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+    // const productQuantity = document.getElementById("quantity").value;
+    const token = sessionStorage.getItem("access_token");
+    if (!token) {
+        alert("Please login to add product to cart");
+        return;
+    }
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    }
+    const respone = await fetch(`http://127.0.0.1:8000/cart/${productId}/add-to-cart/`,{
+        method: "POST",
+        headers: headers
+    });
+    if(respone.ok){
+        alert("Product added to cart");
+        loadCartItems();
+    }else{
+        alert("Failed to add product to cart");
+    }
+} 
+refreshAccessToken();
+
+// cart-wrapper open
+async function loadCartItems() {
+    const token = sessionStorage.getItem("access_token");
+    if (!token) {
+        alert("Please login to view cart");
+        return;
+    }
+
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    };
+
+    const response = await fetch("http://127.0.0.1:8000/api/basket-items/view-cart/", {
+        method: "GET",
+        headers: headers,
+        // credentials: 'include'
+    });
+
+    if (response.ok) {
+        const cartItems = await response.json();
+
+        const cartList = document.querySelector(".cart-wrapper ul");
+        const cartTotalElement = document.querySelector(".cart-wrapper .float-right");
+
+        // Clear existing items
+        cartList.innerHTML = "";
+
+        let cartTotal = 0;
+
+        if (cartItems.length > 0) {
+            cartItems.forEach(item => {
+                const product = item.product;
+                const quantity = item.quantity;
+                const price = parseFloat(product.price);
+                const itemTotal = parseFloat(item.item_total);
+                cartTotal += itemTotal;
+
+                const cartItemHTML = `
+                    <li class="d-flex border-bottom">
+                        <img src="http://127.0.0.1:8000${product.image || 'images/categories/default.png'}" width="63" height="85" alt="${product.name}">
+                        <div class="mx-3">
+                            <h6>${product.name}</h6>
+                            <span>${quantity}</span> X <span>₹${price.toFixed(2)}</span>
+                        </div>
+                        <i class="ti-close" data-cart-item-id="${item.id}" onclick="removeFromCart(${item.id})"></i>
+                    </li>
+                `;
+
+                cartList.insertAdjacentHTML("beforeend", cartItemHTML);
+            });
+        } else {
+            cartList.innerHTML = "<li>Your cart is empty</li>";
+        }
+
+        cartTotalElement.textContent = `₹${cartTotal.toFixed(2)}`;
+    } else {
+        alert("Failed to load cart items");
+    }
+}
+
+loadCartItems();
+
+async function removeFromCart(itemId) {
+    const token = sessionStorage.getItem("access_token");
+    if (!token) {
+        alert("Please login to remove items from cart");
+        return;
+    }
+
+    const headers = {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+    };
+
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/basket-items/${itemId}/remove-from-cart/`, {
+            method: "DELETE",
+            headers: headers,
+        });
+
+        if (response.ok) {
+            alert("Item removed from cart");
+            // Reload or update cart UI here, e.g.:
+            loadCartItems();
+        } else {
+            const data = await response.json();
+            alert(data.detail || "Failed to remove item");
+        }
+    } catch (error) {
+        alert("Error removing item from cart");
+        console.error(error);
+    }
+}
+

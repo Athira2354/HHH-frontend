@@ -37,18 +37,19 @@ async function loginUser() {
             return;
         }
 
-        console.log("Login successful:", data);
-        alert("Login successful!");
-        window.location.href = "shop.html";
+
 
         
         // // Save token if JWT
-        // if (data.access) {
-        //     localStorage.setItem("access_token", data.access);
-        //     localStorage.setItem("refresh_token", data.refresh);
-        // }
+        if (data.access) {
+            sessionStorage.setItem("access_token", data.access);
+            sessionStorage.setItem("refresh_token", data.refresh);
+        }
 
         // Redirect to dashboard/home page
+        console.log("Login successful:", data);
+        alert("Login successful!");
+        window.location.href = "shop.html";
         
     } catch (error) {
         console.error("An error occurred:", error);
