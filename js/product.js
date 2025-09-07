@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded",function(){
         product.forEach(product=>{
 
                 const card = document.createElement("a");
-                card.href = `/Users/sangeethkumarpg/Desktop/hhh_frontend/HHH-frontend/single_product.html?id=${product.id}`;  
+                card.href = 'single_product.html?id=${product.id}';  
                 card.classList.add("product-card-link");
 
                 card.innerHTML = `
