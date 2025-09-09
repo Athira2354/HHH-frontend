@@ -64,23 +64,70 @@ async function renderProduct(product) {
 
     const productMedia = await fetchProductMedia(product.id);
     // console.log(productMedia);
-    if (productMedia) {
-        const image1 = document.querySelector("body > div > div.product-display > div.thumbnail-images > img:nth-child(1)");
-        const image2 = document.querySelector("body > div > div.product-display > div.thumbnail-images > img:nth-child(2)");
-        const image3 = document.querySelector("body > div > div.product-display > div.thumbnail-images > img:nth-child(3)");
+    if (productMedia&& productMedia.length>0) {
+        const thumbnails = document.querySelector(".thumbnail-images");
         const selectedImage = document.getElementById("selectedImage");
-        if (productMedia) {
-            image1.src = productMedia.image1;
-            image2.src = productMedia.image2;
-            image3.src = productMedia.image3;
-            selectedImage.src = productMedia.image1;
+        const selectedVideo = document.getElementById("selectedVideo");
+
+        thumbnails.innerHTML = ""; // clear old thumbnails
+
+        let firstMediaSet = false;
+
+        productMedia.forEach((media, index) => {
+            if (media.media_type === "image") {
+            // Create a new <img> for every image
+                const img = document.createElement("img");
+                img.src = media.file;
+                img.alt = `Product Image ${index + 1}`;
+                img.classList.add("thumbnail");
+
+                img.addEventListener("click", () => {
+                selectedImage.src = media.file;
+                selectedImage.style.display = "block";
+                selectedVideo.style.display = "none";
+            });
+
+                thumbnails.appendChild(img);
+
+            // Default first media
+            if (!firstMediaSet) {
+                selectedImage.src = media.file;
+                selectedImage.style.display = "block";
+                selectedVideo.style.display = "none";
+                firstMediaSet = true;
+            }
+        }
+
+        if (media.media_type === "video") {
+            const videoThumb = document.createElement("video");
+            videoThumb.src = media.file;
+            videoThumb.width = 100;
+            videoThumb.muted = true;
+            videoThumb.controls = false;
+            videoThumb.classList.add("thumbnail");
+
+            videoThumb.addEventListener("click", () => {
+                selectedVideo.src = media.file;
+                selectedVideo.style.display = "block";
+                selectedImage.style.display = "none";
+                selectedVideo.play();
+            });
+
+            thumbnails.appendChild(videoThumb);
+
+            if (!firstMediaSet) {
+                selectedVideo.src = media.file;
+                selectedVideo.style.display = "block";
+                selectedImage.style.display = "none";
+                firstMediaSet = true;
+            }
+        }
+    });
+        
         } else {
             alert("No product media found.")
         }
 
-    }
-
-    // const productDetailsContainer = document.getElementById("product-details-container");
     const thumbnailContainer = document.querySelector(".thumbnail-images");
     const featureGrid = document.querySelector(".feature-grid");
     const faqList = document.querySelector(".faq ul");
@@ -153,7 +200,12 @@ async function renderProduct(product) {
             });
         }
     }
-}
+
+    }
+
+
+    // const productDetailsContainer = document.getElementById("product-details-container");
+   
 
 function selectImage(imgElement) {
     const mainImage = document.getElementById("selectedImage");
@@ -162,18 +214,29 @@ function selectImage(imgElement) {
     }
 }
 
-window.onload=async function () {
+window.onload = async function () {
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get("id");
-    console.log(productId)
+
+    console.log("Product ID from URL:", productId);
+
     if (!productId) {
         console.error("No product ID found in URL.");
         return;
     }
 
-    const product = await fetchProductDetails(parseInt(productId));
-    renderProduct(product);
-}
+    try {
+        const product = await fetchProductDetails(parseInt(productId));
+        if (product) {
+            await renderProduct(product);  // ✅ ensure renderProduct only runs if product exists
+        } else {
+            console.warn("Product not found, skipping render.");
+        }
+    } catch (error) {
+        console.error("Error in product flow:", error);
+    }
+};
+
 async function refreshAccessToken() {
   const refreshToken = sessionStorage.getItem("refresh_token");
   if (!refreshToken) {

@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then(items => {
+                // console.log('gyygygyjg',items)
                 renderCart(items);
             })
             .catch(error => console.error("Error Loading cart:", error));

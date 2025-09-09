@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded",function(){
         console.log("products:",product);
         productGrid.innerHTML="";
         product.forEach(product=>{
+            
 
                 const card = document.createElement("a");
                 card.href = `single_product.html?id=${product.id}`;  
