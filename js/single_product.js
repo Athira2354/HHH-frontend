@@ -29,7 +29,7 @@ async function fetchProductDetails(productId) {
 
 const fetchProductMedia = async (productId) => {
     const productIdParsed = parseInt(productId);
-    const response =  fetch(`http://127.0.0.1:8000/api/get-product-media/${productIdParsed}`);
+    const response = await fetch(`http://127.0.0.1:8000/api/get-product-media/${productIdParsed}`);
 
 
     if (!response.ok) {
