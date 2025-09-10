@@ -29,7 +29,7 @@ async function fetchProductDetails(productId) {
 
 const fetchProductMedia = async (productId) => {
     const productIdParsed = parseInt(productId);
-    const response = await fetch(`http://127.0.0.1:8000/api/get-product-media/${productIdParsed}`);
+    const response =  fetch(`http://127.0.0.1:8000/api/get-product-media/${productIdParsed}`);
 
 
     if (!response.ok) {
@@ -64,7 +64,7 @@ async function renderProduct(product) {
 
     const productMedia = await fetchProductMedia(product.id);
     // console.log(productMedia);
-    if (productMedia&& productMedia.length>0) {
+    if (productMedia && productMedia.length>0) {
         const thumbnails = document.querySelector(".thumbnail-images");
         const selectedImage = document.getElementById("selectedImage");
         const selectedVideo = document.getElementById("selectedVideo");
