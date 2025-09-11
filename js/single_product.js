@@ -47,6 +47,7 @@ async function renderProduct(product) {
 
     const productPrice = document.querySelector("body > div > div.product-display > div.product-details > p > strong");
     productPrice.textContent = `₹${product.price}`;
+
     const featuresArray= product.description.split(".");
 
     const feature1 = document.querySelector("body > div > div.features > div > div:nth-child(1) > p");
@@ -55,6 +56,9 @@ async function renderProduct(product) {
     const feature4 = document.querySelector("body > div > div.features > div > div:nth-child(4) > p");
     const feature5 = document.querySelector("body > div > div.features > div > div:nth-child(5) > p");
     const feature6 = document.querySelector("body > div > div.features > div > div:nth-child(6) > p");
+
+    // const halo=document.querySelector('')
+
     feature1.textContent = featuresArray[0];
     feature2.textContent = featuresArray[1];
     feature3.textContent = featuresArray[2];
@@ -63,7 +67,7 @@ async function renderProduct(product) {
     feature6.textContent = featuresArray[5];
 
     const productMedia = await fetchProductMedia(product.id);
-    // console.log(productMedia);
+    // console.log("hhhhhhhhhhhh",productMedia);
     if (productMedia && productMedia.length>0) {
         const thumbnails = document.querySelector(".thumbnail-images");
         const selectedImage = document.getElementById("selectedImage");
@@ -73,13 +77,13 @@ async function renderProduct(product) {
 
         let firstMediaSet = false;
 
-        productMedia.forEach((media, index) => {
+      return  productMedia.forEach((media, index) => {
             if (media.media_type === "image") {
             // Create a new <img> for every image
                 const img = document.createElement("img");
                 img.src = media.file;
                 img.alt = `Product Image ${index + 1}`;
-                img.classList.add("thumbnail");
+                img.classList.add("thumbnail-image");
 
                 img.addEventListener("click", () => {
                 selectedImage.src = media.file;
@@ -151,12 +155,14 @@ async function renderProduct(product) {
     //     <p>${product.description}</p>
     // `;
 
+    // const productMedia = await fetchProductMedia(product.id);
+
     // ✅ Thumbnails
     if (thumbnailContainer) {
         thumbnailContainer.innerHTML = "";
         if (product.image) {
             const img = document.createElement("img");
-            img.src = product.image;
+            img.src = product.file;
             img.alt = product.name;
             img.onclick = () => selectImage(img);
             thumbnailContainer.appendChild(img);
@@ -379,5 +385,16 @@ async function removeFromCart(itemId) {
         alert("Error removing item from cart");
         console.error(error);
     }
+}
+async function BuyNow() {
+     const urlParams = new URLSearchParams(window.location.search);
+     const productId = urlParams.get("id");
+  
+    if(!productId){
+        alert("No product selected to BuyNow");
+        return;
+    }
+    window.location.href=`checkout.html?id=${productId}`
+    
 }
 

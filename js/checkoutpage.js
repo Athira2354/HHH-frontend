@@ -217,6 +217,23 @@ async function removeFromCart(itemId) {
         console.error(error);
     }
 }
-
+ 
+async function loadCheckoutProduct(){
+    const UrlParams= new URLSearchParams(window.location.search);
+    const productId=UrlParams.get("id")
+    if(!productId){
+        alert("invalid productID")
+        return;
+    }
+    const product=await fetchProductDetails(productId);
+    if(product){
+        document.getElementById("ProductName").textContent=product.name;
+        document.getElementById("ProductPrice").textContent=`₹${product.price}`;
+        if(product.image){
+            document.getElementById("ProductImage").src=`http://127.0.0.1:8000/products/${product.image}`;
+        }
+    }
+}
+loadCheckoutProduct();
 refreshAccessToken();
 loadCartItemsToCart();
