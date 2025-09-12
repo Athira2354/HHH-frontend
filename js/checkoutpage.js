@@ -234,6 +234,60 @@ async function loadCheckoutProduct(){
         }
     }
 }
+
+document.getElementById("pay_now").addEventListener('click',async ()=>{
+    try {
+        // Call Django checkout API
+        const res = await fetch("http://127.0.0.1:8000/payments/checkout/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                amount: 500, // or product.price dynamically
+            }),
+        });
+
+        const data = await res.json();
+        console.log("Checkout response:", data);
+
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+
+        // Open Razorpay checkout
+        const options = {
+            key: data.key_id,
+            amount: data.amount,
+            currency: "INR",
+            name: "My Shop",
+            description: "Product Purchase",
+            order_id: data.payment.id, // Razorpay order_id
+            handler: function (response) {
+                alert("Payment successful! Razorpay ID: " + response.razorpay_payment_id);
+                // ✅ You can now call your backend to verify & save payment
+            },
+            prefill: {
+                email: "customer@example.com",
+                contact: "9999999999",
+            },
+            theme: {
+                color: "#3399cc",
+            },
+        };
+
+        const rzp1 = new Razorpay(options);
+        rzp1.open();
+    } catch (err) {
+        console.error("Checkout error:", err);
+    }
+});
+//     window.location.href=`http://127.0.0.1:8000/payments/checkout`;
+
+// })
+
+
 loadCheckoutProduct();
 refreshAccessToken();
 loadCartItemsToCart();

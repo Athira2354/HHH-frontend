@@ -394,7 +394,8 @@ async function BuyNow() {
         alert("No product selected to BuyNow");
         return;
     }
-    window.location.href=`checkout.html?id=${productId}`
+    window.location.href=`checkoutpage.html?id=${productId}`
+    // window.location.href=`checkoutpage.html`
     
 }
 
